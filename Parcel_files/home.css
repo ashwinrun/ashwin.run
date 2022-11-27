@@ -7,6 +7,10 @@ body {
   background: #fefefe;
 }
 
+body {
+  margin-top: -20px;
+}
+
 h1,
 h2,
 h3,
@@ -58,9 +62,38 @@ header img {
 .banner {
   text-align: center;
   line-height: 40px;
-  background: #2e4e6b;
+  height: 40px;
+  background: #21374b;
   color: #e7dacb;
   font-family: 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.banner ul {
+  list-style-type: none;
+  display: flex;
+  /* align-items: center; */
+  justify-content: right;
+}
+
+.banner li {
+  display: block;
+  flex: 1;
+  max-width: 150px;
+  /* border: 1px solid #21374b; */
+  /* background: #e7dacb; */
+  /* color: #21374b; */
+  /* color: #e7dacb; */
+}
+
+.banner li a {
+  text-decoration: underline;
+  color: #e7dacb;
+  /* font-weight: bold; */
+  font-size: 120%;
+}
+
+.banner li::before {
+  /* content: "•"; */
 }
 
 .banner a {
@@ -445,13 +478,29 @@ h1 {
   border: 0;
 }
 
-#consultation iframe {
-  width: 100%;
-  height: 500px;
-  border: 0;
-}
-
 .get-started {
   display: block;
   margin: auto;
+}
+
+.button-container {
+  display: flex;
+}
+
+#consultation h2 {
+  text-align: center;
+}
+
+#clients h2 {
+  text-align: center;
+}
+
+#clients div {
+  display: flex;
+}
+
+#clients div img {
+  width: 100px;
+  margin: 10px;
+  display: inline-block;
 }
