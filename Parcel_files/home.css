@@ -485,7 +485,6 @@ h1 {
 
 .button-container {
   display: flex;
-  flex-wrap: wrap;
 }
 
 #consultation h2 {
@@ -498,6 +497,7 @@ h1 {
 
 #clients div {
   display: flex;
+  flex-wrap: wrap;
 }
 
 #clients div img {
