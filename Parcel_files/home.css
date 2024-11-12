@@ -51,7 +51,7 @@ header {
   background: #21374b;
   color: #e7dacb;
   text-align: center;
-  padding: 80px 0 50px 0;
+  padding: 10px 0 20px 0;
   font-family: 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -504,4 +504,82 @@ h1 {
   width: 100px;
   margin: 10px;
   display: inline-block;
+}
+
+
+.meet .row {
+  display: flex;
+}
+
+.meet .row > div {
+  flex: 1;
+}
+
+.meet img {
+  width: 100%;
+}
+
+.meet img {
+  border:solid 2px;
+  border-bottom-color:#ffe;
+  border-left-color:#eed;
+  border-right-color:#eed;
+  border-top-color:#ccb;
+  max-height:50%;
+  max-width:50%;
+  border-radius: 20px;
+  margin: auto;
+  text-align: center;
+}
+
+.frame {
+  /* margin: 20px; */
+  width: 60%;
+  /* height: 50%; */
+
+  background-color:#ddc;
+  border:solid 5vmin #eee;
+  border-bottom-color:#fff;
+  border-left-color:#eee;
+  border-radius:2px;
+  border-right-color:#eee;
+  border-top-color:#ddd;
+  box-shadow:0 0 5px 0 rgba(0,0,0,.25) inset, 0 5px 10px 5px rgba(0,0,0,.25);
+  box-sizing:border-box;
+  display:inline-block;
+  /* margin:10vh 10vw; */
+  /* width: 100%; */
+  /* height:80vh; */
+  /* padding:8vmin; */
+  position:relative;
+  text-align:center;
+  &:before {
+    border-radius:2px;
+    bottom:-2vmin;
+    box-shadow:0 2px 5px 0 rgba(0,0,0,.25) inset;
+    content:"";
+    left:-2vmin;
+    position:absolute;
+    right:-2vmin;
+    top:-2vmin;
+  }
+  &:after {
+    border-radius:2px;
+    bottom:-2.5vmin;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.25);
+    content:"";
+    left:-2.5vmin;
+    position:absolute;
+    right:-2.5vmin;
+    top:-2.5vmin;
+  }
+}
+
+.clients h2 {
+  text-align: center;
+}
+
+.clients h3 {
+  font-weight: bold;
+  font-size: 100%;
 }

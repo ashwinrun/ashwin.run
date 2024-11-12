@@ -26,9 +26,9 @@ function spawn() {
   // }, 3000)
 }
 
-setTimeout(function run() {
-  spawn()
-  setTimeout(run, 500 + Math.random() * 400)
-}, 500 + Math.random() * 400)
+// setTimeout(function run() {
+//   spawn()
+//   setTimeout(run, 500 + Math.random() * 400)
+// }, 500 + Math.random() * 400)
 
-spawn()
+// spawn()
