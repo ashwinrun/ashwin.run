@@ -90,7 +90,11 @@
       .container {
         display: flex;
         flex-direction: column;
-        height: 100vh;
+        /* height: 100vh; */
+      }
+
+      .card-image {
+        max-width: calc(100% - 40px);
       }
 
       @media (min-width: 900px) {
@@ -98,6 +102,7 @@
           max-width: 1200px;
           margin: 0 auto;
           padding: 20px;
+          padding-top: 0;
         }
         
         .content-wrapper {
@@ -108,7 +113,7 @@
         }
         
         .left-column {
-          flex: 0 0 200px;
+          flex: 0 0 225px;
           display: flex;
           flex-direction: column;
         }
@@ -121,7 +126,7 @@
           box-shadow: 0 2px 10px rgba(0,0,0,0.1);
           padding: 30px;
           overflow-y: auto;
-          max-height: 485px;
+          max-height: 553px;
         }
         
         .headshot {
@@ -132,7 +137,7 @@
         }
         
         .writing-section {
-          margin-top: 0px;
+          margin-top: 10px;
           padding: 0 20px;
         }
         
@@ -174,6 +179,7 @@
           height: 160px;
           object-fit: cover;
           display: block;
+          max-width: initial;
         }
         
         .card-content {
@@ -278,11 +284,12 @@
       </div>
     </div>
     
-    </div>
+
+  </div>
 
 
-    <section class="writing-section">
-      <h2>Writing</h2>
+    <div class="writing-section">
+      <h2 style="text-align: center; margin-bottom: 1em;">Writing</h2>
       <div class="writing-cards">
         <a href="https://www.ajc.com/opinion/opinion-my-opponents-refusal-to-debate-hurts-democracy/UBWWBJAWBRD4PFNQYVE25SL7ZA/" class="card">
           <img src="./assets/ajc.jpg" alt="My opponent's refusal to debate hurts democracy" class="card-image">
