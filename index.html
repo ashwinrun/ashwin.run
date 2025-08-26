@@ -26,7 +26,7 @@
         margin: 0;
         padding: 20px;
         line-height: 1.6;
-        height: 100vh;
+        /* height: 100vh; */
         /* overflow: hidden; */
       }
 
@@ -130,6 +130,73 @@
           margin: 0;
           border-radius: 10px;
         }
+        
+        .writing-section {
+          margin-top: 0px;
+          padding: 0 20px;
+        }
+        
+        .writing-section h2 {
+          font-size: 1.5em;
+          margin-bottom: 20px;
+          color: #2f2f2f;
+          padding-top: 0;
+        }
+        
+        .writing-cards {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 20px;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+        
+        .card {
+          background: white;
+          border: 1px solid #e0e0e0;
+          border-radius: 8px;
+          overflow: hidden;
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+          text-decoration: none;
+          color: inherit;
+          display: block;
+        }
+        
+        .card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+          text-decoration: none;
+        }
+        
+        .card-image {
+          width: 100%;
+          height: 160px;
+          object-fit: cover;
+          display: block;
+        }
+        
+        .card-content {
+          padding: 15px;
+        }
+        
+        .card h3 {
+          margin: 0 0 8px 0;
+          font-size: 1em;
+          line-height: 1.3;
+          color: #2f2f2f;
+        }
+        
+        .card:hover h3 {
+          color: #d2691e;
+        }
+        
+        .card .year {
+          margin: 0;
+          font-size: 0.85em;
+          color: #666;
+          font-style: italic;
+        }
       
       }
     </style>
@@ -210,7 +277,62 @@
         </p>
       </div>
     </div>
+    
     </div>
+
+
+    <section class="writing-section">
+      <h2>Writing</h2>
+      <div class="writing-cards">
+        <a href="https://www.ajc.com/opinion/opinion-my-opponents-refusal-to-debate-hurts-democracy/UBWWBJAWBRD4PFNQYVE25SL7ZA/" class="card">
+          <img src="./assets/ajc.jpg" alt="My opponent's refusal to debate hurts democracy" class="card-image">
+          <div class="card-content">
+            <h3>My opponent's refusal to debate hurts democracy</h3>
+            <p class="year">(2024)</p>
+          </div>
+        </a>
+        
+        <a href="https://joinreboot.org/p/whats-in-an-ecosystem" class="card">
+          <img src="./assets/ecosystem.jpeg" alt="What's in an Ecosystem?" class="card-image">
+          <div class="card-content">
+            <h3>What's in an Ecosystem?</h3>
+            <p class="year">(2023)</p>
+          </div>
+        </a>
+        
+        <a href="https://www.indiaspora.org/blog/100-years-later-embracing-our-legacy-of-dr-bhagat-singh-thind/" class="card">
+          <img src="./assets/thind.jpeg" alt="Dr. Bhagat Singh Thind" class="card-image">
+          <div class="card-content">
+            <h3>100 Years Later, Embracing Our Legacy of Dr. Bhagat Singh Thind</h3>
+            <p class="year">(2023)</p>
+          </div>
+        </a>
+        
+        <a href="https://georgetownlawtechreview.org/ai-transcription-isnt-working-for-students-with-disabilities-heres-how-to-fix-it/GLTR-11-2022/" class="card">
+          <img src="./assets/ai-disabilities.png" alt="AI Transcription" class="card-image">
+          <div class="card-content">
+            <h3>AI Transcription Isn't Working for Students with Disabilities. Here's How to Fix It.</h3>
+            <p class="year">(2022)</p>
+          </div>
+        </a>
+        
+        <a href="https://plaintextgroup.github.io/archive/reports/securing-open-source-software-at-the-source/" class="card">
+          <img src="./assets/plaintext.png" alt="Securing Open Source Software" class="card-image">
+          <div class="card-content">
+            <h3>Securing Open Source Software at the Source</h3>
+            <p class="year">(2022)</p>
+          </div>
+        </a>
+        
+        <a href="https://stanforddaily.com/2021/06/12/ramaswami-when-two-worlds-collide/" class="card">
+          <img src="./assets/stanford-daily.jpeg" alt="When Two Worlds Collide" class="card-image">
+          <div class="card-content">
+            <h3>When Two Worlds Collide</h3>
+            <p class="year">(2021)</p>
+          </div>
+        </a>
+      </div>
+    </section>
 
     <footer></footer>
   </body>
