@@ -129,6 +129,42 @@
         transform: translateY(-3px) rotate(0);
       }
 
+      .note-with-image::before {
+        content: "";
+        position: absolute;
+        top: 7px;
+        left: 50%;
+        z-index: 2;
+        width: 58px;
+        height: 16px;
+        background: rgba(232, 222, 198, 0.82);
+        box-shadow: 0 1px 2px rgba(47, 47, 47, 0.12);
+        transform: translateX(-50%) rotate(-1deg);
+      }
+
+      .note-image {
+        display: block;
+        width: 100%;
+        height: 145px;
+        margin: -10px 0 18px;
+        border: 5px solid white;
+        box-shadow: 0 2px 6px rgba(47, 47, 47, 0.16);
+        object-fit: cover;
+      }
+
+      .note-image.contain {
+        background: white;
+        object-fit: contain;
+      }
+
+      .corridor-note-logo {
+        width: 80%;
+        height: auto;
+        margin: -10px auto 24px;
+        padding: 16px 12px;
+        background: #fafaf7;
+      }
+
       .writing-section {
         margin-top: 40px;
         padding: 0 20px;
@@ -283,26 +319,30 @@
 
       <div class="right-column">
 
-        <p>
+        <p class="note-with-image">
+              <img src="https://www.corridor.dev/logo.svg" alt="Corridor" class="note-image contain corridor-note-logo" loading="lazy">
               I am currently the <strong>CTO and Co-founder</strong> at <a href="https://corridor.dev">Corridor</a>.
               Corridor is an AI company that helps engineering and security teams ship secure and autonomous code. We're a Series A startup backed by <a href="https://www.conviction.com/">Conviction</a> and <a href="https://www.felicis.com/">Felicis</a>. And we're <a href="https://www.corridor.dev/jobs/">hiring</a>!
         </p>
 
-        <p>
-              In 2024, I <a href="https://web.archive.org/web/20250716002722/https://ashwinforgeorgia.com/">ran for Georgia State Senate</a> in my hometown of Johns Creek (<a href="https://www.nytimes.com/2024/10/18/us/georgia-state-senate-ramaswami-still.html"><em>NYT</em></a>). From 2020-2023, I worked at the Cybersecurity and Infrastructure Security Agency (<a href="https://www.cisa.gov/">CISA</a>) on election security, where we built <a href="https://www.cisa.gov/resources-tools/services/crossfeed">Crossfeed</a> to help states and counties secure critical infrastructure and elections websites.
+        <p class="note-with-image">
+              <img src="./assets/ajc.jpg" alt="Early voting and accessible entrance signs" class="note-image" loading="lazy">
+              In 2024, I <a href="https://web.archive.org/web/20250716002722/https://ashwinforgeorgia.com/">ran for Georgia State Senate</a> in my hometown of Johns Creek (<a href="https://www.nytimes.com/2024/10/18/us/georgia-state-senate-ramaswami-still.html"><em>NYT</em></a>). From 2020-2023, I worked at the Cybersecurity and Infrastructure Security Agency (<a href="https://www.cisa.gov/">CISA</a>), where we built <a href="https://www.cisa.gov/resources-tools/services/crossfeed">Crossfeed</a> to help states secure their elections.
+            </p>
+            <p class="note-with-image">
+              <img src="./assets/plaintext.png" alt="An open door with binary digits streaming through it" class="note-image" loading="lazy">
+              I've long been an open source software developer, maintaining <a href="https://github.com/rjsf-team/react-jsonschema-form">react-jsonschema-form</a> (with many other people's help!) since 2019. From 2021-2023, I ran a <a href="https://github.com/PlaintextGroup/oss-virtual-incubator">grants program</a> at Schmidt Futures to support OSS security measures <a href="https://www.wsj.com/opinion/protect-open-source-software-prevention-oss-public-use-cybersecurity-innovation-cyberattack-apache-log4j-11643316125">in the wake of Log4Shell</a>. We funded <a href="https://blog.opencollective.com/ecosyste-ms-identify-secure-and-sustain-critical-open-source-components/">Ecosyste.ms</a>, the <a href="https://www.atlanticcouncil.org/in-depth-research-reports/report/open-source-software-as-infrastructure/">Atlantic Council</a>, <a href="https://www.opentech.fund/funds/free-and-open-source-software-sustainability-fund/">OTF</a>, and <a href="https://infrastructureinsights.fund/">D//F</a>.
             </p>
             <p>
-              I've long been an open source software developer, maintaining <a href="https://github.com/rjsf-team/react-jsonschema-form">react-jsonschema-form</a> (with many other people's help!) since 2019. From 2021-2023, I ran a <a href="https://github.com/PlaintextGroup/oss-virtual-incubator">grants program</a> at Schmidt Futures to support OSS security measures <a href="https://www.wsj.com/opinion/protect-open-source-software-prevention-oss-public-use-cybersecurity-innovation-cyberattack-apache-log4j-11643316125">in the wake of Log4Shell</a>. We supported <a href="https://blog.opencollective.com/ecosyste-ms-identify-secure-and-sustain-critical-open-source-components/">Ecosyste.ms</a>, the <a href="https://www.atlanticcouncil.org/in-depth-research-reports/report/open-source-software-as-infrastructure/">Atlantic Council</a>, OTF's <a href="https://www.opentech.fund/funds/free-and-open-source-software-sustainability-fund/">FOSS Sustainability Fund</a>, and <a href="https://infrastructureinsights.fund/">D//F</a>. I was also a research contributor at the <a href="https://www.linuxfoundation.org/">Linux Foundation</a> and the <a href="https://openssf.org/">OpenSSF</a>.
+              I hold a B.S. in computer science from Stanford University. At Stanford, I was the first CTO of the <a href="https://stanforddaily.com/">Stanford Daily</a>; organized <a href="https://www.treehacks.com/">TreeHacks</a>; and worked on research projects through <a href="https://github.com/codalab/codalab-worksheets">CodaLab</a>, <a href="https://aworldmadebytravel.org/">The Grand Tour Project</a>, <a href="https://purl.stanford.edu/tr171zs0069">Stanford Internet Observatory</a>, <a href="https://immigrationlab.org/">Immigration Policy Lab</a>, and <a href="https://crfm.stanford.edu/">CRFM</a>. I built software and infrastructure at early stage startups including <a href="https://skiff.com/">Skiff</a>, <a href="https://www.nooks.in/">Nooks</a>, <a href="https://www.pulsarml.com/">Pulsar</a>, <a href="https://eventive.org/">Eventive</a>, <a href="https://maple.finance/">Maple Finance</a>, and <a href="https://caldera.xyz/">Caldera</a>. Later, I worked at <a href="https://www.sequoiacap.com/">Sequoia Capital</a> as a tech law and policy fellow in Washington, D.C.
             </p>
-            <p>
-              I hold a B.S. in computer science from Stanford University and a J.D. from Georgetown University Law Center. At Stanford, I was the first CTO of the <a href="https://stanforddaily.com/">Stanford Daily</a>; organized <a href="https://www.treehacks.com/">TreeHacks</a>; and worked on research projects through <a href="https://github.com/codalab/codalab-worksheets">CodaLab</a>, <a href="https://aworldmadebytravel.org/">The Grand Tour Project</a>, <a href="https://purl.stanford.edu/tr171zs0069">Stanford Internet Observatory</a>, <a href="https://immigrationlab.org/">Immigration Policy Lab</a>, and <a href="https://crfm.stanford.edu/">CRFM</a>. I built software and infrastructure at early stage startups including <a href="https://skiff.com/">Skiff</a>, <a href="https://www.nooks.in/">Nooks</a>, <a href="https://www.pulsarml.com/">Pulsar</a>, <a href="https://eventive.org/">Eventive</a>, <a href="https://maple.finance/">Maple Finance</a>, and <a href="https://caldera.xyz/">Caldera</a>. Later, I worked at <a href="https://www.sequoiacap.com/">Sequoia Capital</a> as a tech law and policy fellow in Washington, D.C.
-            </p>
-            <p>At Georgetown, I helped start the <a href="https://www.law.georgetown.edu/tech-institute/initiatives/georgetown-justice-lab/judicial-innovation/">Judicial Innovation Fellowship</a>; helped establish an endowment for <a href="https://campusministry.georgetown.edu/faith-traditions/dharmic/">Dharmic Life</a>; and worked at the <a href="https://wikimediafoundation.org/">Wikimedia Foundation</a> and <a href="https://www.law.georgetown.edu/icap/">ICAP</a>. In 2023, I worked in the Georgia Attorney General's <a href="https://consumer.georgia.gov/">Consumer Protection Division</a> through an <a href="https://www.americanbar.org/groups/antitrust_law/about/awards-fellowships/steiger-fellowship/">ABA Steiger Fellowship</a>. 
+            <p class="">
+              I also hold a J.D. from Georgetown University Law Center. At Georgetown, I helped start the <a href="https://www.law.georgetown.edu/tech-institute/initiatives/georgetown-justice-lab/judicial-innovation/">Judicial Innovation Fellowship</a>; helped establish an endowment for <a href="https://campusministry.georgetown.edu/faith-traditions/dharmic/">Dharmic Life</a>; and worked at the <a href="https://wikimediafoundation.org/">Wikimedia Foundation</a> and <a href="https://www.law.georgetown.edu/icap/">ICAP</a>. In 2023, I worked in the Georgia Attorney General's <a href="https://consumer.georgia.gov/">Consumer Protection Division</a> through an <a href="https://www.americanbar.org/groups/antitrust_law/about/awards-fellowships/steiger-fellowship/">ABA Steiger Fellowship</a>, where I worked on the multistate litigation against Meta over child safety (which led to a <a href="https://law.georgia.gov/press-releases/2026-08-26/carr-announces-largest-big-tech-settlement-history">$17.1 billion settlement</a> in 2026).
             </p>
             <p>
               Before my undergraduate studies, I spent much time helping my high school build one of the <a href="https://www.naqt.com/stats/player/?contact_id=329">top quizbowl teams</a> in the country. I also attended Georgia Tech for a year through Georgia's excellent <a href="https://gadoe.org/ctae/dual-enrollment-articulation/">Dual Enrollment program</a>.
-            </p>
-            <p>
+<br>
+              <br>
               You can reach me at <a href="mailto:ashwin@corridor.dev">ashwin@corridor.dev</a> or <a href="mailto:aramaswamis@gmail.com">aramaswamis@gmail.com</a>.
             </p>
 
