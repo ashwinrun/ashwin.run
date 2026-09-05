@@ -76,14 +76,40 @@
         margin-top: 2em;
       }
       
+      .left-column {
+        position: relative;
+        width: fit-content;
+        margin: 0 auto;
+      }
+
+      .left-column::before {
+        content: "";
+        position: absolute;
+        top: 24px;
+        left: 50%;
+        z-index: 2;
+        width: 62px;
+        height: 17px;
+        background: rgba(232, 222, 198, 0.86);
+        box-shadow: 0 1px 2px rgba(47, 47, 47, 0.12);
+        transform: translateX(-50%) rotate(-1deg);
+      }
+
       .headshot {
+        box-sizing: border-box;
         width: 200px;
-        border-radius: 10px;
+        aspect-ratio: 4 / 5;
+        padding: 8px;
+        border-radius: 2px;
+        background: white;
+        box-shadow: 0 5px 12px rgba(47, 47, 47, 0.18);
         object-fit: cover;
+        object-position: center 35%;
         margin: auto;
         display: block;
         margin-top: 2em;
         margin-bottom: 2em;
+        transform: rotate(-0.75deg);
       }
 
       .container {
@@ -248,9 +274,15 @@
         }
         
         .left-column {
-          flex: 0 0 180px;
+          flex: 0 0 220px;
           display: flex;
           flex-direction: column;
+          width: auto;
+          margin: 0;
+        }
+
+        .left-column::before {
+          top: -8px;
         }
         
         .right-column {
@@ -261,9 +293,9 @@
         
         .headshot {
           width: 100%;
-          height: auto;
+          aspect-ratio: 4 / 5;
           margin: 0;
-          border-radius: 10px;
+          border-radius: 2px;
         }
         
         .writing-section h2 {
