@@ -362,7 +362,20 @@
       <div class="left-column">
         <img src="./assets/IMG_7376%202.jpg" alt="Ashwin Ramaswami" class="headshot">
         <h1 class="profile-name">Ashwin Ramaswami</h1>
-        <blockquote class="profile-quote">“It isn't real unless you write it down.”</blockquote>
+        <blockquote class="profile-quote" id="profile-quote">“It isn't real unless you write it down.”</blockquote>
+        <script>
+          (function () {
+            var quotes = [
+              "It isn't real unless you write it down.",
+              "SF is an amazing city",
+              "I was sitting by myself in a @Waymo today and suddenly I got a call from support where they asked, ‘Hello Ashwin, I just wanted to verify that you’re 18 years old?’"
+            ];
+            var el = document.getElementById("profile-quote");
+            if (!el || quotes.length === 0) return;
+            var quote = quotes[Math.floor(Math.random() * quotes.length)];
+            el.textContent = "\u201C" + quote + "\u201D";
+          })();
+        </script>
       </div>
 
       <div class="right-column">
