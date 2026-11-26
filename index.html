@@ -288,6 +288,10 @@
 
           card.addEventListener("pointermove", function (e) {
             if (!pressed) return;
+            if (!(e.buttons & 1)) {
+              pressed = false;
+              return;
+            }
             var dx = e.clientX - startX, dy = e.clientY - startY;
             if (!moved && Math.abs(dx) + Math.abs(dy) < 4) return;
             if (!moved) {
