@@ -109,7 +109,7 @@
         var z = 10;
         var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         document.querySelectorAll(".right-column > p, .left-column").forEach(function (card) {
-          var x = 0, y = 0, vx = 0, vy = 0, rot = 0;
+          var x = 0, y = 0, vx = 0, vy = 0;
           var startX, startY, originX, originY, lastX, lastY, lastT;
           var pressed = false, moved = false, frame = null, base = null;
 
@@ -118,7 +118,6 @@
 
           function render() {
             card.style.translate = x + "px " + y + "px";
-            card.style.rotate = rot + "deg";
           }
 
           function measureBase() {
@@ -132,12 +131,10 @@
             if (left < 0 || left > maxX) {
               x = (left < 0 ? 0 : maxX) - base.left;
               vx = -vx * 0.75;
-              rot += vy * 6;
             }
             if (top < 0 || top > maxY) {
               y = (top < 0 ? 0 : maxY) - base.top;
               vy = -vy * 0.75;
-              rot -= vx * 6;
             }
           }
 
@@ -149,16 +146,9 @@
             var friction = Math.pow(0.996, dt);
             vx *= friction;
             vy *= friction;
-            rot += (0 - rot) * Math.min(dt * 0.006, 1);
             bounce();
             render();
-            if (Math.abs(vx) + Math.abs(vy) > 0.01 || Math.abs(rot) > 0.1) {
-              frame = requestAnimationFrame(step);
-            } else {
-              rot = 0;
-              render();
-              frame = null;
-            }
+            frame = Math.abs(vx) + Math.abs(vy) > 0.01 ? requestAnimationFrame(step) : null;
           }
 
           card.addEventListener("pointerdown", function (e) {
@@ -193,7 +183,6 @@
             lastT = now;
             x = originX + dx;
             y = originY + dy;
-            rot = Math.max(-18, Math.min(18, vx * 12));
             render();
           });
 
@@ -203,11 +192,7 @@
             card.classList.remove("dragging");
             if (!moved) return;
             if (performance.now() - lastT > 80) vx = vy = 0;
-            if (reduceMotion) {
-              rot = 0;
-              render();
-              return;
-            }
+            if (reduceMotion) return;
             measureBase();
             lastT = performance.now();
             frame = requestAnimationFrame(step);
