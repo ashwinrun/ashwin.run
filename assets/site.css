@@ -193,6 +193,15 @@ footer {
   box-shadow: 0 2px 6px rgba(47, 47, 47, 0.16);
 }
 
+.edu-part {
+  display: block;
+  break-inside: avoid;
+}
+
+.edu-part + .edu-part {
+  margin-top: 1em;
+}
+
 .logo-pair a {
   display: flex;
 }
@@ -362,6 +371,13 @@ footer {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: start;
   }
+
+  .education-card {
+    grid-column: 1 / -1;
+    column-count: 2;
+    column-gap: 36px;
+    font-size: 0.92em;
+  }
   
   .headshot {
     width: 100%;
@@ -385,6 +401,29 @@ footer {
     margin: 0 auto;
   }
 
+}
+
+@media (min-width: 1100px) {
+  .right-column {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .education-card {
+    column-count: 3;
+  }
+
+  .note-image,
+  .logo-pair {
+    height: 110px;
+  }
+
+  .logo-pair {
+    gap: 48px;
+  }
+
+  .logo-pair img {
+    height: 84px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
