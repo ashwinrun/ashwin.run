@@ -111,6 +111,9 @@
 
         var GRAVITY = 0.0025;
         var MARGIN = 6;
+        var SLOPE = GRAVITY * 4;
+        var FRICTION = 0.0006;
+        var TIP = 0.0008;
         var z = 10;
         var frame = null, lastT = 0;
         var bodies = Array.prototype.map.call(
@@ -127,6 +130,8 @@
         function measure() {
           bodies.forEach(function (b) {
             var r = b.el.getBoundingClientRect();
+            var m = new DOMMatrix(getComputedStyle(b.el).transform);
+            b.tilt = Math.atan2(m.b, m.a);
             b.w = b.el.offsetWidth;
             b.h = b.el.offsetHeight;
             b.baseLeft = r.left + r.width / 2 - b.w / 2 - b.x;
@@ -138,13 +143,18 @@
         function top(b) { return b.baseTop + b.y; }
 
         function support(b, prevBottom) {
-          var floor = document.documentElement.clientHeight - MARGIN;
+          var s = { y: document.documentElement.clientHeight - MARGIN, body: null };
           bodies.forEach(function (o) {
             if (o === b) return;
             var overlaps = left(b) < left(o) + o.w - 2 && left(b) + b.w > left(o) + 2;
-            if (overlaps && top(o) >= prevBottom - 1) floor = Math.min(floor, top(o));
+            var center = left(b) + b.w / 2;
+            var under = center >= left(o) && center <= left(o) + o.w;
+            if (overlaps && top(o) >= prevBottom - 1 && top(o) < s.y) {
+              s = under ? { y: top(o), body: o } : s;
+              if (!under) b.vx += (center < left(o) ? -1 : 1) * TIP * 16;
+            }
           });
-          return floor;
+          return s;
         }
 
         function step(t) {
@@ -172,11 +182,19 @@
                 b.y = -b.baseTop;
                 b.vy = -b.vy * 0.6;
               }
-              var floor = support(b, prevBottom);
-              if (top(b) + b.h >= floor) {
-                b.y = floor - b.h - b.baseTop;
+              var s = support(b, prevBottom);
+              if (top(b) + b.h >= s.y) {
+                b.y = s.y - b.h - b.baseTop;
                 b.vy = b.vy > 0.25 ? -b.vy * 0.35 : 0;
-                b.vx *= Math.pow(0.9, dt / 16);
+                if (s.body) {
+                  if (b.vx) {
+                    var before = b.vx;
+                    b.vx += (Math.sin(b.tilt) * SLOPE - Math.sign(b.vx) * FRICTION) * dt;
+                    if (Math.sign(b.vx) !== Math.sign(before)) b.vx = 0;
+                  }
+                } else {
+                  b.vx *= Math.pow(0.9, dt / 16);
+                }
               }
               if (Math.abs(b.vx) < 0.01) b.vx = 0;
               if (b.vx || b.vy) moving = true;
