@@ -248,6 +248,84 @@
         margin: 0 auto;
       }
       
+      .writing-timeline {
+        max-width: 760px;
+        margin: 0 auto;
+        border-top: 1px solid rgba(47, 47, 47, 0.22);
+      }
+
+      .writing-year {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: 24px;
+        padding: 18px 0;
+        border-bottom: 1px solid rgba(47, 47, 47, 0.22);
+      }
+
+      .writing-year-label {
+        color: #d2691e;
+        font-size: 1.6em;
+        line-height: 1.2;
+      }
+
+      .writing-year ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .writing-year li a {
+        display: block;
+        padding: 5px 0;
+        color: #2f2f2f;
+        transition: transform 0.2s ease;
+      }
+
+      .writing-year li a:hover {
+        text-decoration: none;
+        transform: translateX(4px);
+      }
+
+      .writing-year li a:hover .writing-title {
+        color: #d2691e;
+      }
+
+      .writing-venue {
+        color: #8a8578;
+        font-size: 0.85em;
+        font-style: italic;
+      }
+
+      .writing-peek {
+        position: fixed;
+        z-index: 50;
+        width: 220px;
+        height: 140px;
+        border: 5px solid white;
+        box-shadow: 0 8px 20px rgba(47, 47, 47, 0.22);
+        object-fit: cover;
+        pointer-events: none;
+        opacity: 0;
+        transform: rotate(-2deg) scale(0.94);
+        transition: opacity 0.15s ease, transform 0.15s ease;
+      }
+
+      .writing-peek.visible {
+        opacity: 1;
+        transform: rotate(-2deg) scale(1);
+      }
+
+      @media (max-width: 600px) {
+        .writing-year {
+          grid-template-columns: 1fr;
+          gap: 4px;
+        }
+
+        .writing-peek {
+          display: none;
+        }
+      }
+
       .card {
         background: white;
         border: 1px solid #e0e0e0;
@@ -440,105 +518,52 @@
 
     <div class="writing-section">
       <h2 style="text-align: center; margin-bottom: 1em;">Writing</h2>
-      <div class="writing-cards">
-        <a href="https://ashwinramaswami.substack.com/p/how-i-accidentally-hacked-stanfords" class="card">
-          <img src="https://substackcdn.com/image/fetch/$s_!MWwM!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc0e7c93e-0612-4be7-b95e-30ce33b3c464_2304x1298.png" alt="How I Accidentally Hacked Stanford's Admissions System" class="card-image">
-          <div class="card-content">
-            <h3>How I Accidentally Hacked Stanford's Admissions System</h3>
-            <p class="year">(2026)</p>
-          </div>
-        </a>
-
-        <a href="https://ashwinramaswami.substack.com/p/2025-the-worlds-that-took-shape" class="card">
-          <img src="https://substackcdn.com/image/fetch/$s_!v_U4!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fedce9ad1-ee77-4d0c-9d9d-2e5f22366bbb_1964x2048.jpeg" alt="2025: The worlds that took shape" class="card-image">
-          <div class="card-content">
-            <h3>2025: The worlds that took shape</h3>
-            <p class="year">(2025)</p>
-          </div>
-        </a>
-
-        <a href="https://ashwinramaswami.substack.com/p/essence-of-advaita-vedanta-philosophy/" class="card">
-          <img src="https://substackcdn.com/image/fetch/$s_!1JTs!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F48719817-508c-4f0b-b94f-526c626f0d81_4608x3072.jpeg" alt="Essence of Advaita Vedanta philosophy" class="card-image">
-          <div class="card-content">
-            <h3>Essence of Advaita Vedanta philosophy</h3>
-            <p class="year">(2025)</p>
-          </div>
-        </a>
-
-        <a href="https://www.ajc.com/opinion/opinion-my-opponents-refusal-to-debate-hurts-democracy/UBWWBJAWBRD4PFNQYVE25SL7ZA/" class="card">
-          <img src="./assets/ajc.jpg" alt="My opponent's refusal to debate hurts democracy" class="card-image">
-          <div class="card-content">
-            <h3>My opponent's refusal to debate hurts democracy</h3>
-            <p class="year">(2024)</p>
-          </div>
-        </a>
-
-        <!-- <a href="https://knightcolumbia.org/blog/a-safe-harbor-for-ai-evaluation-and-red-teaming" class="card">
-          <img src="./assets/ai-safe-harbor.jpg" alt="A Safe Harbor for AI Evaluation and Red Teaming" class="card-image">
-          <div class="card-content">
-            <h3>A Safe Harbor for AI Evaluation and Red Teaming</h3>
-            <p class="year">(2024)</p>
-          </div>
-        </a> -->
-        
-        <a href="https://arxiv.org/abs/2403.07918" class="card">
-          <img src="./assets/societal-impact-ai.png" alt="On the Societal Impact of Open Foundation Models" class="card-image">
-          <div class="card-content">
-            <h3>On the Societal Impact of Open Foundation Models</h3>
-            <p class="year">(2024)</p>
-          </div>
-        </a>
-        
-        <a href="https://lawreview.law.ucdavis.edu/archives/57/1/fact-and-friction-case-study-fight-against-false-news" class="card">
-          <img src="./assets/fact-and-friction.png" alt="Fact and Friction: A Case Study in the Fight Against False News" class="card-image">
-          <div class="card-content">
-            <h3>Fact and Friction: A Case Study in the Fight Against False News</h3>
-            <p class="year">(2023)</p>
-          </div>
-        </a>
-        
-        <a href="https://joinreboot.org/p/whats-in-an-ecosystem" class="card">
-          <img src="./assets/ecosystem.jpeg" alt="What's in an Ecosystem?" class="card-image">
-          <div class="card-content">
-            <h3>What's in an Ecosystem?</h3>
-            <p class="year">(2023)</p>
-          </div>
-        </a>
-        
-        <a href="https://www.indiaspora.org/blog/100-years-later-embracing-our-legacy-of-dr-bhagat-singh-thind/" class="card">
-          <img src="./assets/thind.jpeg" alt="Dr. Bhagat Singh Thind" class="card-image">
-          <div class="card-content">
-            <h3>100 Years Later, Embracing Our Legacy of Dr. Bhagat Singh Thind</h3>
-            <p class="year">(2023)</p>
-          </div>
-        </a>
-        
-        <a href="https://georgetownlawtechreview.org/ai-transcription-isnt-working-for-students-with-disabilities-heres-how-to-fix-it/GLTR-11-2022/" class="card">
-          <img src="./assets/ai-disabilities.png" alt="AI Transcription" class="card-image">
-          <div class="card-content">
-            <h3>AI Transcription Isn't Working for Students with Disabilities. Here's How to Fix It.</h3>
-            <p class="year">(2022)</p>
-          </div>
-        </a>
-        
-        <a href="https://plaintextgroup.github.io/archive/reports/securing-open-source-software-at-the-source/" class="card">
-          <img src="./assets/plaintext.png" alt="Securing Open Source Software" class="card-image">
-          <div class="card-content">
-            <h3>Securing Open Source Software at the Source</h3>
-            <p class="year">(2022)</p>
-          </div>
-        </a>
-        
-        <a href="https://stanforddaily.com/2021/06/12/ramaswami-when-two-worlds-collide/" class="card">
-          <img src="./assets/stanford-daily.jpeg" alt="When Two Worlds Collide" class="card-image">
-          <div class="card-content">
-            <h3>When Two Worlds Collide</h3>
-            <p class="year">(2021)</p>
-          </div>
-        </a>
-
+      <div class="writing-timeline">
+        <div class="writing-year">
+          <div class="writing-year-label">2026</div>
+          <ul>
+            <li><a href="https://ashwinramaswami.substack.com/p/how-i-accidentally-hacked-stanfords" data-img="https://substackcdn.com/image/fetch/$s_!MWwM!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc0e7c93e-0612-4be7-b95e-30ce33b3c464_2304x1298.png"><span class="writing-title">How I Accidentally Hacked Stanford's Admissions System</span> <span class="writing-venue">Substack</span></a></li>
+          </ul>
+        </div>
+        <div class="writing-year">
+          <div class="writing-year-label">2025</div>
+          <ul>
+            <li><a href="https://ashwinramaswami.substack.com/p/2025-the-worlds-that-took-shape" data-img="https://substackcdn.com/image/fetch/$s_!v_U4!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fedce9ad1-ee77-4d0c-9d9d-2e5f22366bbb_1964x2048.jpeg"><span class="writing-title">2025: The worlds that took shape</span> <span class="writing-venue">Substack</span></a></li>
+            <li><a href="https://ashwinramaswami.substack.com/p/essence-of-advaita-vedanta-philosophy/" data-img="https://substackcdn.com/image/fetch/$s_!1JTs!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F48719817-508c-4f0b-b94f-526c626f0d81_4608x3072.jpeg"><span class="writing-title">Essence of Advaita Vedanta philosophy</span> <span class="writing-venue">Substack</span></a></li>
+          </ul>
+        </div>
+        <div class="writing-year">
+          <div class="writing-year-label">2024</div>
+          <ul>
+            <li><a href="https://www.ajc.com/opinion/opinion-my-opponents-refusal-to-debate-hurts-democracy/UBWWBJAWBRD4PFNQYVE25SL7ZA/" data-img="./assets/ajc.jpg"><span class="writing-title">My opponent's refusal to debate hurts democracy</span> <span class="writing-venue">Atlanta Journal-Constitution</span></a></li>
+            <!-- <li><a href="https://knightcolumbia.org/blog/a-safe-harbor-for-ai-evaluation-and-red-teaming" data-img="./assets/ai-safe-harbor.jpg"><span class="writing-title">A Safe Harbor for AI Evaluation and Red Teaming</span> <span class="writing-venue">Knight First Amendment Institute</span></a></li> -->
+            <li><a href="https://arxiv.org/abs/2403.07918" data-img="./assets/societal-impact-ai.png"><span class="writing-title">On the Societal Impact of Open Foundation Models</span> <span class="writing-venue">arXiv</span></a></li>
+          </ul>
+        </div>
+        <div class="writing-year">
+          <div class="writing-year-label">2023</div>
+          <ul>
+            <li><a href="https://lawreview.law.ucdavis.edu/archives/57/1/fact-and-friction-case-study-fight-against-false-news" data-img="./assets/fact-and-friction.png"><span class="writing-title">Fact and Friction: A Case Study in the Fight Against False News</span> <span class="writing-venue">UC Davis Law Review</span></a></li>
+            <li><a href="https://joinreboot.org/p/whats-in-an-ecosystem" data-img="./assets/ecosystem.jpeg"><span class="writing-title">What's in an Ecosystem?</span> <span class="writing-venue">Reboot</span></a></li>
+            <li><a href="https://www.indiaspora.org/blog/100-years-later-embracing-our-legacy-of-dr-bhagat-singh-thind/" data-img="./assets/thind.jpeg"><span class="writing-title">100 Years Later, Embracing Our Legacy of Dr. Bhagat Singh Thind</span> <span class="writing-venue">Indiaspora</span></a></li>
+          </ul>
+        </div>
+        <div class="writing-year">
+          <div class="writing-year-label">2022</div>
+          <ul>
+            <li><a href="https://georgetownlawtechreview.org/ai-transcription-isnt-working-for-students-with-disabilities-heres-how-to-fix-it/GLTR-11-2022/" data-img="./assets/ai-disabilities.png"><span class="writing-title">AI Transcription Isn't Working for Students with Disabilities. Here's How to Fix It.</span> <span class="writing-venue">Georgetown Law Technology Review</span></a></li>
+            <li><a href="https://plaintextgroup.github.io/archive/reports/securing-open-source-software-at-the-source/" data-img="./assets/plaintext.png"><span class="writing-title">Securing Open Source Software at the Source</span> <span class="writing-venue">Plaintext Group</span></a></li>
+          </ul>
+        </div>
+        <div class="writing-year">
+          <div class="writing-year-label">2021</div>
+          <ul>
+            <li><a href="https://stanforddaily.com/2021/06/12/ramaswami-when-two-worlds-collide/" data-img="./assets/stanford-daily.jpeg"><span class="writing-title">When Two Worlds Collide</span> <span class="writing-venue">The Stanford Daily</span></a></li>
+          </ul>
+        </div>
       </div>
-    </section>
+      <img class="writing-peek" id="writing-peek" alt="" aria-hidden="true">
+    </div>
 
     <div class="writing-section">
       <h2 style="text-align: center; margin-bottom: 1em;">Recommendations</h2>
@@ -593,6 +618,25 @@
       </div>
     </div>
 
+    <script>
+      (function () {
+        var peek = document.getElementById("writing-peek");
+        if (!peek || !window.matchMedia("(hover: hover)").matches) return;
+        document.querySelectorAll(".writing-year a[data-img]").forEach(function (a) {
+          a.addEventListener("mouseenter", function () {
+            peek.src = a.dataset.img;
+            peek.classList.add("visible");
+          });
+          a.addEventListener("mouseleave", function () {
+            peek.classList.remove("visible");
+          });
+          a.addEventListener("mousemove", function (e) {
+            peek.style.left = e.clientX + 24 + "px";
+            peek.style.top = e.clientY - 70 + "px";
+          });
+        });
+      })();
+    </script>
     <footer></footer>
   </body>
 </html>
