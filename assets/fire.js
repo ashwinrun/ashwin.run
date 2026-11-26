@@ -14,6 +14,11 @@
     canvas.width = w * dpr;
     canvas.height = h * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (still && flames.length) {
+      flames = [];
+      embers = [];
+      draw();
+    }
   }
 
   function flame(seed) {
