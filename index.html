@@ -42,7 +42,7 @@
       <a href="/recommendations/">Recommendations</a>
     </nav>
     <div class="container">
-      <div class="content-wrapper">
+      <div class="content-wrapper drop-in">
       <div class="left-column">
         <img src="./assets/IMG_7376%202.jpg" alt="Ashwin Ramaswami" class="headshot">
         <h1 class="profile-name">Ashwin Ramaswami</h1>
@@ -153,6 +153,7 @@
 
           card.addEventListener("pointerdown", function (e) {
             if (e.pointerType !== "mouse" || e.button !== 0) return;
+            card.style.animation = "none";
             if (frame) cancelAnimationFrame(frame);
             frame = null;
             pressed = true;
