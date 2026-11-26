@@ -42,7 +42,7 @@
       <a href="/recommendations/">Recommendations</a>
     </nav>
     <div class="container">
-      <div class="content-wrapper drop-in">
+      <div class="content-wrapper">
       <div class="left-column">
         <img src="./assets/IMG_7376%202.jpg" alt="Ashwin Ramaswami" class="headshot">
         <h1 class="profile-name">Ashwin Ramaswami</h1>
@@ -106,64 +106,121 @@
 
     <script>
       (function () {
+        var desktop = window.matchMedia("(min-width: 1100px)");
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+        var GRAVITY = 0.0025;
+        var MARGIN = 6;
         var z = 10;
-        var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        document.querySelectorAll(".right-column > p, .left-column").forEach(function (card) {
-          var x = 0, y = 0, vx = 0, vy = 0;
-          var startX, startY, originX, originY, lastX, lastY, lastT;
-          var pressed = false, moved = false, frame = null, base = null;
+        var frame = null, lastT = 0;
+        var bodies = Array.prototype.map.call(
+          document.querySelectorAll(".right-column > p, .left-column"),
+          function (el) {
+            return { el: el, x: 0, y: 0, vx: 0, vy: 0, dragging: false };
+          }
+        );
+
+        function render(b) {
+          b.el.style.translate = b.x + "px " + b.y + "px";
+        }
+
+        function measure() {
+          bodies.forEach(function (b) {
+            var r = b.el.getBoundingClientRect();
+            b.w = b.el.offsetWidth;
+            b.h = b.el.offsetHeight;
+            b.baseLeft = r.left + r.width / 2 - b.w / 2 - b.x;
+            b.baseTop = r.top + r.height / 2 - b.h / 2 - b.y;
+          });
+        }
+
+        function left(b) { return b.baseLeft + b.x; }
+        function top(b) { return b.baseTop + b.y; }
+
+        function support(b, prevBottom) {
+          var floor = document.documentElement.clientHeight - MARGIN;
+          bodies.forEach(function (o) {
+            if (o === b) return;
+            var overlaps = left(b) < left(o) + o.w - 2 && left(b) + b.w > left(o) + 2;
+            if (overlaps && top(o) >= prevBottom - 1) floor = Math.min(floor, top(o));
+          });
+          return floor;
+        }
+
+        function step(t) {
+          var dt = Math.min(t - lastT, 32);
+          lastT = t;
+          var moving = false;
+          var maxX = document.documentElement.clientWidth;
+          bodies
+            .slice()
+            .sort(function (a, b) { return top(b) + b.h - (top(a) + a.h); })
+            .forEach(function (b) {
+              if (b.dragging) {
+                moving = true;
+                return;
+              }
+              var prevBottom = top(b) + b.h;
+              b.vy += GRAVITY * dt;
+              b.x += b.vx * dt;
+              b.y += b.vy * dt;
+              if (left(b) < MARGIN || left(b) + b.w > maxX - MARGIN) {
+                b.x = (left(b) < MARGIN ? MARGIN : maxX - MARGIN - b.w) - b.baseLeft;
+                b.vx = -b.vx * 0.6;
+              }
+              if (top(b) < 0) {
+                b.y = -b.baseTop;
+                b.vy = -b.vy * 0.6;
+              }
+              var floor = support(b, prevBottom);
+              if (top(b) + b.h >= floor) {
+                b.y = floor - b.h - b.baseTop;
+                b.vy = b.vy > 0.25 ? -b.vy * 0.35 : 0;
+                b.vx *= Math.pow(0.9, dt / 16);
+              }
+              if (Math.abs(b.vx) < 0.01) b.vx = 0;
+              if (b.vx || b.vy) moving = true;
+              render(b);
+            });
+          frame = moving ? requestAnimationFrame(step) : null;
+        }
+
+        function wake() {
+          if (frame || !desktop.matches) return;
+          lastT = performance.now();
+          frame = requestAnimationFrame(step);
+        }
+
+        function reset() {
+          if (frame) cancelAnimationFrame(frame);
+          frame = null;
+          bodies.forEach(function (b) {
+            b.x = b.y = b.vx = b.vy = 0;
+            b.el.style.translate = "";
+          });
+          if (desktop.matches) {
+            measure();
+            wake();
+          }
+        }
+
+        bodies.forEach(function (b) {
+          var card = b.el;
+          var startX, startY, originX, originY, lastX, lastY, lastMove;
+          var pressed = false, moved = false;
 
           card.classList.add("draggable");
           card.addEventListener("dragstart", function (e) { e.preventDefault(); });
 
-          function render() {
-            card.style.translate = x + "px " + y + "px";
-          }
-
-          function measureBase() {
-            var r = card.getBoundingClientRect();
-            base = { left: r.left - x, top: r.top - y, width: r.width, height: r.height };
-          }
-
-          function bounce() {
-            var left = base.left + x, top = base.top + y;
-            var maxX = window.innerWidth - base.width, maxY = window.innerHeight - base.height;
-            if (left < 0 || left > maxX) {
-              x = (left < 0 ? 0 : maxX) - base.left;
-              vx = -vx * 0.75;
-            }
-            if (top < 0 || top > maxY) {
-              y = (top < 0 ? 0 : maxY) - base.top;
-              vy = -vy * 0.75;
-            }
-          }
-
-          function step(t) {
-            var dt = Math.min(t - lastT, 32);
-            lastT = t;
-            x += vx * dt;
-            y += vy * dt;
-            var friction = Math.pow(0.996, dt);
-            vx *= friction;
-            vy *= friction;
-            bounce();
-            render();
-            frame = Math.abs(vx) + Math.abs(vy) > 0.01 ? requestAnimationFrame(step) : null;
-          }
-
           card.addEventListener("pointerdown", function (e) {
-            if (e.pointerType !== "mouse" || e.button !== 0) return;
-            card.style.animation = "none";
-            if (frame) cancelAnimationFrame(frame);
-            frame = null;
+            if (e.pointerType !== "mouse" || e.button !== 0 || !desktop.matches) return;
             pressed = true;
             moved = false;
             startX = lastX = e.clientX;
             startY = lastY = e.clientY;
-            lastT = performance.now();
-            originX = x;
-            originY = y;
-            vx = vy = 0;
+            lastMove = performance.now();
+            originX = b.x;
+            originY = b.y;
           });
 
           card.addEventListener("pointermove", function (e) {
@@ -172,31 +229,32 @@
             if (!moved && Math.abs(dx) + Math.abs(dy) < 4) return;
             if (!moved) {
               moved = true;
+              b.dragging = true;
+              b.vx = b.vy = 0;
               card.setPointerCapture(e.pointerId);
               card.classList.add("dragging");
               card.style.zIndex = ++z;
+              wake();
             }
-            var now = performance.now(), dt = Math.max(now - lastT, 1);
-            vx = vx * 0.6 + ((e.clientX - lastX) / dt) * 0.4;
-            vy = vy * 0.6 + ((e.clientY - lastY) / dt) * 0.4;
+            var now = performance.now(), dt = Math.max(now - lastMove, 1);
+            b.vx = b.vx * 0.6 + ((e.clientX - lastX) / dt) * 0.4;
+            b.vy = b.vy * 0.6 + ((e.clientY - lastY) / dt) * 0.4;
             lastX = e.clientX;
             lastY = e.clientY;
-            lastT = now;
-            x = originX + dx;
-            y = originY + dy;
-            render();
+            lastMove = now;
+            b.x = originX + dx;
+            b.y = originY + dy;
+            render(b);
           });
 
           function release() {
             if (!pressed) return;
             pressed = false;
-            card.classList.remove("dragging");
             if (!moved) return;
-            if (performance.now() - lastT > 80) vx = vy = 0;
-            if (reduceMotion) return;
-            measureBase();
-            lastT = performance.now();
-            frame = requestAnimationFrame(step);
+            b.dragging = false;
+            card.classList.remove("dragging");
+            if (performance.now() - lastMove > 80) b.vx = b.vy = 0;
+            wake();
           }
 
           card.addEventListener("pointerup", release);
@@ -209,6 +267,16 @@
             }
           }, true);
         });
+
+        var resizeTimer;
+        window.addEventListener("resize", function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(reset, 150);
+        });
+
+        function start() { setTimeout(reset, 400); }
+        if (document.readyState === "complete") start();
+        else window.addEventListener("load", start);
       })();
     </script>
     <footer></footer>
