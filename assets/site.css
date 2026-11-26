@@ -334,6 +334,7 @@ footer {
     gap: 40px;
     flex: 1;
     overflow: hidden;
+    padding-bottom: 16px;
   }
   
   .left-column {
