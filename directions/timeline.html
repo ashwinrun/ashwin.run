@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ashwin Ramaswami</title>
+<link rel="icon" href="../assets/lightning.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+img{display:block;max-width:100%}
+
+:root{--ink:#1d1b16;--muted:#77705f;--paper:#faf7f0;--line:#e3dccb;--accent:#c7561d}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.7 "Inter",sans-serif}
+a{color:var(--accent);text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .25s}
+a:hover{background-size:100% 1px}
+.wrap{max-width:980px;margin:0 auto;padding:0 24px}
+header{padding:96px 0 72px;display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center}
+header img{width:132px;height:132px;border-radius:50%;object-fit:cover;object-position:center 30%}
+h1{margin:0;font:400 clamp(48px,8vw,88px)/.95 "Instrument Serif",serif;letter-spacing:-.02em}
+h1 em{color:var(--accent)}
+.lede{margin:14px 0 0;color:var(--muted);font-size:15px;font-style:italic}
+.tl{position:relative;border-top:1px solid var(--line)}
+.ch{display:grid;grid-template-columns:180px 1fr;gap:40px;padding:56px 0;border-bottom:1px solid var(--line)}
+.ch-year{position:sticky;top:32px;align-self:start;font:400 44px/1 "Instrument Serif",serif;color:var(--accent)}
+.ch h2{margin:0 0 14px;font:600 13px/1 "Inter",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.ch p{margin:0;max-width:62ch}
+.tl-img{width:100%;max-width:560px;height:220px;object-fit:cover;border-radius:6px;margin:0 0 22px}
+.tl-logos{display:flex;gap:56px;align-items:center;justify-content:center;max-width:560px;height:180px;margin:0 0 22px;border-radius:6px;background:#fff;border:1px solid var(--line)}
+.tl-logos a{background:none}.tl-logos img{height:88px;width:auto}
+section.block{padding:88px 0 0}
+section.block>h2{margin:0 0 28px;font:400 52px/1 "Instrument Serif",serif}
+.wy{display:grid;grid-template-columns:180px 1fr;gap:40px;padding:18px 0;border-top:1px solid var(--line)}
+.wy-year{font:400 28px/1.2 "Instrument Serif",serif;color:var(--muted)}
+.wy ul{list-style:none;margin:0;padding:0}
+.wy li{padding:4px 0}
+.wy li a{color:var(--ink);font-weight:500}
+.wy li span{color:var(--muted);font-size:14px;margin-left:8px}
+.recs{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.recs a{background:none;color:var(--ink)}
+.recs img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:4px;transition:transform .25s}
+.recs a:hover img{transform:translateY(-4px)}
+.recs b{display:block;margin-top:10px;font-size:14px;line-height:1.3}
+.recs small{color:var(--muted);font-size:12px}
+footer{padding:96px 0 120px;color:var(--muted)}
+@media(max-width:760px){header{grid-template-columns:1fr;padding:56px 0 40px}.ch,.wy{grid-template-columns:1fr;gap:12px}.ch-year{position:static}.recs{grid-template-columns:repeat(2,1fr)}}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><img src="../assets/IMG_7376%202.jpg" alt="Ashwin Ramaswami"><div><h1>Ashwin <em>Ramaswami</em></h1><p class="lede" data-quote></p></div></header>
+<div class="tl">
+<article class="ch"><div class="ch-year">Now</div><div><h2>Cognition</h2><div class="tl-logos"><a href="https://corridor.dev"><img src="../assets/corridor-mark.svg" alt="Corridor"></a><a href="https://cognition.com/"><img src="../assets/cognition-mark.svg" alt="Cognition"></a></div><p>I am currently in the midst of a stint in the AI industry as Member of Technical Staff at <a href="https://cognition.com/">Cognition</a>, which acquired my startup <a href="https://corridor.dev">Corridor</a>. We focus on securing the world's code.</p></div></article>
+<article class="ch"><div class="ch-year">2024</div><div><h2>Running for office</h2><img class="tl-img" src="../assets/ajc.jpg" alt="" loading="lazy"><p>In 2024, I <a href="https://web.archive.org/web/20250716002722/https://ashwinforgeorgia.com/">ran for Georgia State Senate</a> in my hometown of Johns Creek (<a href="https://www.nytimes.com/2024/10/18/us/georgia-state-senate-ramaswami-still.html"><em>NYT</em></a>). From 2020-2023, I worked at the Cybersecurity and Infrastructure Security Agency (<a href="https://www.cisa.gov/">CISA</a>), where we built <a href="https://www.cisa.gov/resources-tools/services/crossfeed">Crossfeed</a> to help states secure their elections.</p></div></article>
+<article class="ch"><div class="ch-year">2019&ndash;</div><div><h2>Open source</h2><img class="tl-img" src="../assets/plaintext.png" alt="" loading="lazy"><p>I've long been an open source software developer, maintaining <a href="https://github.com/rjsf-team/react-jsonschema-form">react-jsonschema-form</a> (with many other people's help!) since 2019. In 2022, I ran a <a href="https://github.com/PlaintextGroup/oss-virtual-incubator">grants program</a> at Schmidt Futures to support OSS security <a href="https://www.wsj.com/opinion/protect-open-source-software-prevention-oss-public-use-cybersecurity-innovation-cyberattack-apache-log4j-11643316125">in the wake of Log4Shell</a>. We funded <a href="https://blog.opencollective.com/ecosyste-ms-identify-secure-and-sustain-critical-open-source-components/">Ecosyste.ms</a>, the <a href="https://www.atlanticcouncil.org/in-depth-research-reports/report/open-source-software-as-infrastructure/">Atlantic Council</a>, <a href="https://www.opentech.fund/funds/free-and-open-source-software-sustainability-fund/">OTF</a>, and <a href="https://infrastructureinsights.fund/">D//F</a>.</p></div></article>
+<article class="ch"><div class="ch-year">Law</div><div><h2>Georgetown</h2><p>I also hold a J.D. from Georgetown University Law Center, where I helped start the <a href="https://www.law.georgetown.edu/tech-institute/initiatives/georgetown-justice-lab/judicial-innovation/">Judicial Innovation Fellowship</a>; helped establish an endowment for <a href="https://campusministry.georgetown.edu/faith-traditions/dharmic/">Dharmic Life</a>; and worked at the <a href="https://wikimediafoundation.org/">Wikimedia Foundation</a> and <a href="https://www.law.georgetown.edu/icap/">ICAP</a>. In 2023, I worked in the Georgia Attorney General's <a href="https://consumer.georgia.gov/">Consumer Protection Division</a> through an <a href="https://www.americanbar.org/groups/antitrust_law/about/awards-fellowships/steiger-fellowship/">ABA Steiger Fellowship</a>, where I worked on the multistate litigation against Meta over child safety (which led to a <a href="https://law.georgia.gov/press-releases/2026-08-26/carr-announces-largest-big-tech-settlement-history">$17.1 billion settlement</a> in 2026).</p></div></article>
+<article class="ch"><div class="ch-year">Stanford</div><div><h2>Computer science</h2><img class="tl-img" src="../assets/stanford-daily.jpeg" alt="" loading="lazy"><p>I hold a B.S. in computer science from Stanford University. At Stanford, I was the first CTO of the <a href="https://stanforddaily.com/">Stanford Daily</a>; organized <a href="https://www.treehacks.com/">TreeHacks</a>; and worked on <a href="https://github.com/codalab/codalab-worksheets">CodaLab</a>, <a href="https://aworldmadebytravel.org/">The Grand Tour Project</a>, <a href="https://purl.stanford.edu/tr171zs0069">Stanford Internet Observatory</a>, <a href="https://immigrationlab.org/">Immigration Policy Lab</a>, and <a href="https://crfm.stanford.edu/">CRFM</a>. I built software at early stage startups including <a href="https://skiff.com/">Skiff</a>, <a href="https://www.nooks.in/">Nooks</a>, <a href="https://www.pulsarml.com/">Pulsar</a>, <a href="https://eventive.org/">Eventive</a>, <a href="https://maple.finance/">Maple Finance</a>, and <a href="https://caldera.xyz/">Caldera</a>. Later, I worked at <a href="https://www.sequoiacap.com/">Sequoia Capital</a> as a tech law and policy fellow in Washington, D.C.</p></div></article>
+<article class="ch"><div class="ch-year">Before</div><div><h2>Georgia</h2><p>Before my undergraduate studies, I spent much time helping my high school build one of the <a href="https://www.naqt.com/stats/player/?contact_id=329">top quizbowl teams</a> in the country. I also attended Georgia Tech for a year through Georgia's excellent <a href="https://gadoe.org/ctae/dual-enrollment-articulation/">Dual Enrollment program</a>.</p></div></article>
+</div>
+<section class="block"><h2>Writing</h2>
+<div class="wy"><div class="wy-year">2026</div><ul><li><a href="https://ashwinramaswami.substack.com/p/how-i-accidentally-hacked-stanfords">How I Accidentally Hacked Stanford's Admissions System</a><span>Substack</span></li></ul></div>
+<div class="wy"><div class="wy-year">2025</div><ul><li><a href="https://ashwinramaswami.substack.com/p/2025-the-worlds-that-took-shape">2025: The worlds that took shape</a><span>Substack</span></li><li><a href="https://ashwinramaswami.substack.com/p/essence-of-advaita-vedanta-philosophy/">Essence of Advaita Vedanta philosophy</a><span>Substack</span></li></ul></div>
+<div class="wy"><div class="wy-year">2024</div><ul><li><a href="https://www.ajc.com/opinion/opinion-my-opponents-refusal-to-debate-hurts-democracy/UBWWBJAWBRD4PFNQYVE25SL7ZA/">My opponent's refusal to debate hurts democracy</a><span>Atlanta Journal-Constitution</span></li><li><a href="https://arxiv.org/abs/2403.07918">On the Societal Impact of Open Foundation Models</a><span>arXiv</span></li></ul></div>
+<div class="wy"><div class="wy-year">2023</div><ul><li><a href="https://lawreview.law.ucdavis.edu/archives/57/1/fact-and-friction-case-study-fight-against-false-news">Fact and Friction: A Case Study in the Fight Against False News</a><span>UC Davis Law Review</span></li><li><a href="https://joinreboot.org/p/whats-in-an-ecosystem">What's in an Ecosystem?</a><span>Reboot</span></li><li><a href="https://www.indiaspora.org/blog/100-years-later-embracing-our-legacy-of-dr-bhagat-singh-thind/">100 Years Later, Embracing Our Legacy of Dr. Bhagat Singh Thind</a><span>Indiaspora</span></li></ul></div>
+<div class="wy"><div class="wy-year">2022</div><ul><li><a href="https://georgetownlawtechreview.org/ai-transcription-isnt-working-for-students-with-disabilities-heres-how-to-fix-it/GLTR-11-2022/">AI Transcription Isn't Working for Students with Disabilities. Here's How to Fix It.</a><span>Georgetown Law Technology Review</span></li><li><a href="https://plaintextgroup.github.io/archive/reports/securing-open-source-software-at-the-source/">Securing Open Source Software at the Source</a><span>Plaintext Group</span></li></ul></div>
+<div class="wy"><div class="wy-year">2021</div><ul><li><a href="https://stanforddaily.com/2021/06/12/ramaswami-when-two-worlds-collide/">When Two Worlds Collide</a><span>The Stanford Daily</span></li></ul></div>
+</section>
+<section class="block"><h2>Recommendations</h2><div class="recs"><a href="https://www.amazon.com/Dune-Frank-Herbert/dp/0441172717"><img src="../assets/dune.jpg" alt="" loading="lazy"><b>Dune</b><small>Frank Herbert</small></a><a href="https://www.youtube.com/watch?v=Oi6ZjkXFlcU"><img src="../assets/mahler.jpg" alt="" loading="lazy"><b>Mahler Symphony No. 2 "Resurrection"</b><small>Conducted by Leonard Bernstein</small></a><a href="https://www.amazon.com/Pancatantra-Indias-Wisdom-Oxford-Classics/dp/0199555753"><img src="../assets/pancatantra.jpg" alt="" loading="lazy"><b>The Pancatantra</b><small>Translated by Patrick Olivelle</small></a><a href="https://en.wikipedia.org/wiki/Castle_in_the_Sky"><img src="../assets/castle.jpg" alt="" loading="lazy"><b>Castle in the Sky</b><small>Directed by Hayao Miyazaki</small></a><a href="https://www.youtube.com/playlist?list=PLFwcC0dtfDTiQSDIfbF9EJYEqTaA4iZ_6"><img src="../assets/thiruppugazh.jpg" alt="" loading="lazy"><b>503 Thiruppugazh Songs</b><small>Sung by "Guruji" Raghavan</small></a><a href="https://www.goodreads.com/book/show/6979007-zhuangzi"><img src="../assets/zhuangzi.jpg" alt="" loading="lazy"><b>Zhuangzi: The Essential Writings</b><small>Translated by Brook Ziporyn</small></a></div></section>
+<footer>You can reach me at <a href="mailto:ashwin@corridor.dev">ashwin@corridor.dev</a> or <a href="mailto:aramaswamis@gmail.com">aramaswamis@gmail.com</a>.</footer>
+</div>
+<nav class="dir-nav"><a href="../">current</a><a href="./timeline.html" aria-current=page>Timeline</a><a href="./bento.html">Bento</a><a href="./index-list.html">Index</a><a href="./split.html">Split</a></nav>
+<style>.dir-nav{position:fixed;right:16px;bottom:16px;z-index:999;display:flex;gap:2px;padding:4px;border-radius:999px;background:rgba(17,17,17,.9);box-shadow:0 6px 20px rgba(0,0,0,.25);font:500 12px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.dir-nav a{padding:8px 12px;border-radius:999px;color:#ddd!important;text-decoration:none!important;background:none!important;border:0!important}.dir-nav a[aria-current]{background:#fff!important;color:#111!important}</style>
+<script>(function(){var q=["It isn't real unless you write it down.", "SF is an amazing city", "We have to play by the rules, and we have to have rule of law and order", "What I realized is cybersecurity is really important...but the biggest threat to our election security \u2014 it\u2019s not just hackers hacking into our systems. It\u2019s politicians falsely claiming that the election is rigged when it\u2019s not", "I never realized researchers partied so hard", "I think it\u2019s kind of ironic that Stanford is one of the best CS schools in the country, but it\u2019s so negligent in terms of these kinds of important records", "I was sitting by myself in a @Waymo today and suddenly I got a call from support where they asked, \u2018Hello Ashwin, I just wanted to verify that you\u2019re 18 years old?\u2019"];document.querySelectorAll('[data-quote]').forEach(function(e){e.textContent='\u201C'+q[Math.floor(Math.random()*q.length)]+'\u201D'})})();</script>
+</body>
+</html>
