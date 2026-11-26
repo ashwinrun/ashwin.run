@@ -167,6 +167,6 @@ a:hover {
   .right-column > p,
   .card,
   .profile-name {
-    animation: none;
+    animation: none !important;
   }
 }
