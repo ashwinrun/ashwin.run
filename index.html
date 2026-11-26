@@ -104,6 +104,127 @@
   </div>
 
 
+    <script>
+      (function () {
+        var z = 10;
+        var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        document.querySelectorAll(".right-column > p, .left-column").forEach(function (card) {
+          var x = 0, y = 0, vx = 0, vy = 0, rot = 0;
+          var startX, startY, originX, originY, lastX, lastY, lastT;
+          var pressed = false, moved = false, frame = null, base = null;
+
+          card.classList.add("draggable");
+          card.addEventListener("dragstart", function (e) { e.preventDefault(); });
+
+          function render() {
+            card.style.translate = x + "px " + y + "px";
+            card.style.rotate = rot + "deg";
+          }
+
+          function measureBase() {
+            var r = card.getBoundingClientRect();
+            base = { left: r.left - x, top: r.top - y, width: r.width, height: r.height };
+          }
+
+          function bounce() {
+            var left = base.left + x, top = base.top + y;
+            var maxX = window.innerWidth - base.width, maxY = window.innerHeight - base.height;
+            if (left < 0 || left > maxX) {
+              x = (left < 0 ? 0 : maxX) - base.left;
+              vx = -vx * 0.75;
+              rot += vy * 6;
+            }
+            if (top < 0 || top > maxY) {
+              y = (top < 0 ? 0 : maxY) - base.top;
+              vy = -vy * 0.75;
+              rot -= vx * 6;
+            }
+          }
+
+          function step(t) {
+            var dt = Math.min(t - lastT, 32);
+            lastT = t;
+            x += vx * dt;
+            y += vy * dt;
+            var friction = Math.pow(0.996, dt);
+            vx *= friction;
+            vy *= friction;
+            rot += (0 - rot) * Math.min(dt * 0.006, 1);
+            bounce();
+            render();
+            if (Math.abs(vx) + Math.abs(vy) > 0.01 || Math.abs(rot) > 0.1) {
+              frame = requestAnimationFrame(step);
+            } else {
+              rot = 0;
+              render();
+              frame = null;
+            }
+          }
+
+          card.addEventListener("pointerdown", function (e) {
+            if (e.pointerType !== "mouse" || e.button !== 0) return;
+            if (frame) cancelAnimationFrame(frame);
+            frame = null;
+            pressed = true;
+            moved = false;
+            startX = lastX = e.clientX;
+            startY = lastY = e.clientY;
+            lastT = performance.now();
+            originX = x;
+            originY = y;
+            vx = vy = 0;
+          });
+
+          card.addEventListener("pointermove", function (e) {
+            if (!pressed) return;
+            var dx = e.clientX - startX, dy = e.clientY - startY;
+            if (!moved && Math.abs(dx) + Math.abs(dy) < 4) return;
+            if (!moved) {
+              moved = true;
+              card.setPointerCapture(e.pointerId);
+              card.classList.add("dragging");
+              card.style.zIndex = ++z;
+            }
+            var now = performance.now(), dt = Math.max(now - lastT, 1);
+            vx = vx * 0.6 + ((e.clientX - lastX) / dt) * 0.4;
+            vy = vy * 0.6 + ((e.clientY - lastY) / dt) * 0.4;
+            lastX = e.clientX;
+            lastY = e.clientY;
+            lastT = now;
+            x = originX + dx;
+            y = originY + dy;
+            rot = Math.max(-18, Math.min(18, vx * 12));
+            render();
+          });
+
+          function release() {
+            if (!pressed) return;
+            pressed = false;
+            card.classList.remove("dragging");
+            if (!moved) return;
+            if (performance.now() - lastT > 80) vx = vy = 0;
+            if (reduceMotion) {
+              rot = 0;
+              render();
+              return;
+            }
+            measureBase();
+            lastT = performance.now();
+            frame = requestAnimationFrame(step);
+          }
+
+          card.addEventListener("pointerup", release);
+          card.addEventListener("pointercancel", release);
+          card.addEventListener("click", function (e) {
+            if (moved) {
+              e.preventDefault();
+              e.stopPropagation();
+              moved = false;
+            }
+          }, true);
+        });
+      })();
+    </script>
     <footer></footer>
   </body>
 </html>
