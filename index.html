@@ -115,7 +115,8 @@
         var FRICTION = 0.0006;
         var TIP = 0.0008;
         var z = 10;
-        var frame = null, lastT = 0, floorY = 0;
+        var frame = null, lastT = 0, floorY = 0, ceilingY = 0;
+        var nav = document.querySelector(".site-nav");
         var bodies = Array.prototype.map.call(
           document.querySelectorAll(".right-column > p"),
           function (el) {
@@ -138,6 +139,7 @@
             b.baseTop = r.top + window.scrollY + r.height / 2 - b.h / 2 - b.y;
           });
           floorY = document.documentElement.clientHeight - MARGIN;
+          ceilingY = nav ? nav.getBoundingClientRect().bottom + window.scrollY - 8 : 0;
           bodies.forEach(function (b) {
             floorY = Math.max(floorY, b.baseTop + b.y + b.h);
           });
@@ -154,7 +156,7 @@
         }
 
         function canHold(o, b) {
-          return o !== b && !o.on && !b.knocked;
+          return o !== b && !o.on && !b.knocked && top(o) - b.h >= Math.min(ceilingY, b.baseTop);
         }
 
         function support(b, prevBottom) {
@@ -202,8 +204,8 @@
                 b.x = (left(b) < MARGIN ? MARGIN : maxX - MARGIN - b.w) - b.baseLeft;
                 b.vx = -b.vx * 0.6;
               }
-              if (top(b) < 0) {
-                b.y = -b.baseTop;
+              if (top(b) < ceilingY) {
+                b.y = ceilingY - b.baseTop;
                 b.vy = -b.vy * 0.6;
               }
               var s = support(b, prevBottom);
