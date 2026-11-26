@@ -440,6 +440,8 @@ footer {
 .draggable {
   cursor: grab;
   touch-action: auto;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .draggable.dragging {
