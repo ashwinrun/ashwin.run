@@ -94,7 +94,7 @@ a:hover {
 .right-column > p:nth-child(even),
 .right-column > p:nth-child(3n),
 .card {
-  background: linear-gradient(180deg, rgba(38, 14, 6, 0.94), rgba(22, 7, 3, 0.96));
+  background: linear-gradient(180deg, #260e06, #160703);
   border: 1px solid rgba(255, 110, 20, 0.55);
   color: #ffe6cf;
   box-shadow:
