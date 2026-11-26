@@ -1,0 +1,180 @@
+/* Fire theme: layered over site.css */
+html {
+  background: #0a0302;
+}
+
+body {
+  background:
+    radial-gradient(ellipse 120% 60% at 50% 115%, rgba(255, 90, 0, 0.55), transparent 60%),
+    radial-gradient(ellipse 80% 40% at 50% 110%, rgba(255, 200, 60, 0.35), transparent 55%),
+    #0a0302;
+  background-attachment: fixed;
+  color: #ffe6cf;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+#fire {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.site-nav,
+.content-wrapper,
+.subpage,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+h1,
+.profile-name,
+.subtitle,
+header,
+footer,
+.writing-section h2,
+.card h3 {
+  color: #ffe6cf;
+}
+
+a,
+.writing-year-label {
+  color: #ffae42;
+}
+
+a:hover {
+  color: #fff3a0;
+  text-shadow: 0 0 8px rgba(255, 170, 0, 0.9);
+}
+
+.site-nav {
+  border-bottom-color: rgba(255, 120, 30, 0.45);
+}
+
+.site-nav a {
+  color: #ffd2a6;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  color: #ffcf33;
+  text-shadow: 0 0 10px rgba(255, 120, 0, 0.9);
+}
+
+.profile-name {
+  background: linear-gradient(0deg, #ff3d00, #ff9100 45%, #ffe066);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(255, 80, 0, 0.75));
+  animation: flicker-text 2.4s infinite alternate;
+}
+
+.profile-quote {
+  color: #ffd2a6;
+  border-color: rgba(255, 120, 30, 0.45);
+}
+
+.headshot {
+  background: #1a0904;
+  box-shadow: 0 0 24px rgba(255, 90, 0, 0.7), 0 0 60px rgba(255, 40, 0, 0.35);
+}
+
+.left-column::before,
+.note-with-image::before {
+  background: linear-gradient(90deg, rgba(255, 120, 0, 0.85), rgba(255, 210, 60, 0.85));
+  box-shadow: 0 0 10px rgba(255, 140, 0, 0.8);
+}
+
+.right-column > p,
+.right-column > p:nth-child(even),
+.right-column > p:nth-child(3n),
+.card {
+  background: linear-gradient(180deg, #260e06, #160703);
+  border: 1px solid rgba(255, 110, 20, 0.55);
+  color: #ffe6cf;
+  box-shadow:
+    0 0 14px rgba(255, 80, 0, 0.45),
+    0 0 40px rgba(255, 40, 0, 0.18),
+    inset 0 -12px 24px -14px rgba(255, 90, 0, 0.6);
+  animation: flicker-card 3s infinite alternate;
+}
+
+.right-column > p:nth-child(2n) {
+  animation-delay: -1.1s;
+}
+
+.right-column > p:nth-child(3n) {
+  animation-delay: -2.2s;
+}
+
+.right-column > p:hover,
+.card:hover {
+  box-shadow:
+    0 0 22px rgba(255, 120, 0, 0.8),
+    0 0 70px rgba(255, 60, 0, 0.4),
+    inset 0 -14px 28px -12px rgba(255, 140, 0, 0.8);
+}
+
+.note-image,
+.logo-pair {
+  border-color: #2a0f05;
+  box-shadow: 0 0 12px rgba(255, 90, 0, 0.55);
+}
+
+.note-image.contain,
+.logo-pair {
+  background: #fff4e6;
+}
+
+.writing-timeline,
+.writing-year {
+  border-color: rgba(255, 120, 30, 0.4);
+}
+
+.writing-year li a {
+  color: #ffe6cf;
+}
+
+.writing-year li a:hover .writing-title,
+.card:hover h3 {
+  color: #ffcf33;
+}
+
+.writing-venue,
+.card .year {
+  color: #c98a5e;
+}
+
+@keyframes flicker-card {
+  0%   { border-color: rgba(255, 110, 20, 0.55); }
+  40%  { border-color: rgba(255, 170, 40, 0.8); }
+  70%  { border-color: rgba(255, 70, 10, 0.5); }
+  100% { border-color: rgba(255, 150, 30, 0.75); }
+}
+
+@keyframes flicker-text {
+  0%   { filter: drop-shadow(0 0 8px rgba(255, 80, 0, 0.7)); }
+  50%  { filter: drop-shadow(0 0 16px rgba(255, 140, 0, 0.95)); }
+  100% { filter: drop-shadow(0 0 10px rgba(255, 60, 0, 0.8)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .right-column > p,
+  .card,
+  .profile-name {
+    animation: none !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .profile-name {
+    background: none;
+    -webkit-text-fill-color: CanvasText;
+    filter: none;
+  }
+}

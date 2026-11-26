@@ -19,6 +19,7 @@
       type="image/x-icon"
     />
     <link rel="stylesheet" href="./assets/site.css" />
+    <link rel="stylesheet" href="./assets/fire.css" />
     <base target="_parent" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
@@ -166,7 +167,7 @@
           bodies.forEach(function (o) {
             if (!canHold(o, b)) return;
             var overlaps = left(b) < left(o) + o.w - 2 && left(b) + b.w > left(o) + 2;
-            if (overlaps && top(o) >= prevBottom - 1) surface = Math.min(surface, top(o));
+            if (overlaps && Math.max(top(o), o.prevTop) >= prevBottom - 1) surface = Math.min(surface, top(o));
           });
           if (surface === floor) return { y: floor, body: null, tip: 0 };
           var candidate = null;
@@ -214,6 +215,7 @@
           lastT = t;
           var moving = false;
           var maxX = document.documentElement.clientWidth;
+          bodies.forEach(function (b) { b.prevTop = top(b); });
           bodies
             .slice()
             .sort(function (a, b) { return top(b) + b.h - (top(a) + a.h); })
@@ -383,5 +385,6 @@
       })();
     </script>
     <footer></footer>
+    <script src="./assets/fire.js"></script>
   </body>
 </html>
