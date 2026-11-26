@@ -387,9 +387,72 @@ footer {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .right-column {
+    gap: 14px;
+  }
+
+  .right-column > p {
+    padding: 16px 18px 18px;
+    font-size: 0.84em;
+    line-height: 1.5;
+  }
+
+  .note-image,
+  .logo-pair {
+    height: 90px;
+    margin: -6px 0 12px;
+  }
+
+  .logo-pair {
+    gap: 40px;
+  }
+
+  .logo-pair img {
+    height: 68px;
+  }
+
+  .left-column {
+    flex-basis: 180px;
+  }
+
+  .site-nav {
+    padding-bottom: 8px;
+  }
+
+  body {
+    padding-top: 12px;
+  }
+
+  footer {
+    margin-top: 0;
+  }
+
+  .profile-name {
+    font-size: 1.7em;
+  }
+
+  .profile-quote {
+    margin-bottom: 0;
+    font-size: 0.8em;
+    line-height: 1.45;
+  }
+}
+
+@media (min-width: 1100px) and (min-height: 880px) {
+  .right-column {
+    gap: 20px;
+  }
+
+  .right-column > p {
+    padding: 24px 22px 28px;
+    font-size: 0.92em;
+    line-height: 1.6;
+  }
+
   .note-image,
   .logo-pair {
     height: 110px;
+    margin: -10px 0 18px;
   }
 
   .logo-pair {
@@ -398,6 +461,10 @@ footer {
 
   .logo-pair img {
     height: 84px;
+  }
+
+  .left-column {
+    flex-basis: 220px;
   }
 }
 
