@@ -117,7 +117,7 @@
         var z = 10;
         var frame = null, lastT = 0;
         var bodies = Array.prototype.map.call(
-          document.querySelectorAll(".right-column > p, .left-column"),
+          document.querySelectorAll(".right-column > p"),
           function (el) {
             return { el: el, x: 0, y: 0, vx: 0, vy: 0, dragging: false };
           }
