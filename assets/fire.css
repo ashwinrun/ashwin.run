@@ -170,3 +170,11 @@ a:hover {
     animation: none !important;
   }
 }
+
+@media (forced-colors: active) {
+  .profile-name {
+    background: none;
+    -webkit-text-fill-color: CanvasText;
+    filter: none;
+  }
+}
