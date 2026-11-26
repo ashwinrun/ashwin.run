@@ -115,7 +115,7 @@
         var FRICTION = 0.0006;
         var TIP = 0.0008;
         var z = 10;
-        var frame = null, lastT = 0;
+        var frame = null, lastT = 0, floorY = 0;
         var bodies = Array.prototype.map.call(
           document.querySelectorAll(".right-column > p"),
           function (el) {
@@ -135,26 +135,49 @@
             b.w = b.el.offsetWidth;
             b.h = b.el.offsetHeight;
             b.baseLeft = r.left + r.width / 2 - b.w / 2 - b.x;
-            b.baseTop = r.top + r.height / 2 - b.h / 2 - b.y;
+            b.baseTop = r.top + window.scrollY + r.height / 2 - b.h / 2 - b.y;
+          });
+          floorY = document.documentElement.clientHeight - MARGIN;
+          bodies.forEach(function (b) {
+            floorY = Math.max(floorY, b.baseTop + b.y + b.h);
           });
         }
 
         function left(b) { return b.baseLeft + b.x; }
         function top(b) { return b.baseTop + b.y; }
 
+        function occupant(o, b) {
+          for (var i = 0; i < bodies.length; i++) {
+            if (bodies[i] !== b && bodies[i].on === o) return bodies[i];
+          }
+          return null;
+        }
+
+        function canHold(o, b) {
+          return o !== b && !o.on && !b.knocked;
+        }
+
         function support(b, prevBottom) {
-          var s = { y: document.documentElement.clientHeight - MARGIN, body: null };
+          var floor = floorY;
+          var center = left(b) + b.w / 2;
+          var surface = floor, held = null, tip;
           bodies.forEach(function (o) {
-            if (o === b) return;
+            if (!canHold(o, b)) return;
             var overlaps = left(b) < left(o) + o.w - 2 && left(b) + b.w > left(o) + 2;
-            var center = left(b) + b.w / 2;
-            var under = center >= left(o) && center <= left(o) + o.w;
-            if (overlaps && top(o) >= prevBottom - 1 && top(o) < s.y) {
-              s = under ? { y: top(o), body: o } : s;
-              if (!under) b.vx += (center < left(o) ? -1 : 1) * TIP * 16;
-            }
+            if (overlaps && top(o) >= prevBottom - 1) surface = Math.min(surface, top(o));
           });
-          return s;
+          if (surface === floor) return { y: floor, body: null, tip: 0 };
+          var candidate = null;
+          bodies.forEach(function (o) {
+            if (!canHold(o, b) || Math.abs(top(o) - surface) > 3) return;
+            var overlaps = left(b) < left(o) + o.w - 2 && left(b) + b.w > left(o) + 2;
+            if (!overlaps) return;
+            if (center >= left(o) && center <= left(o) + o.w) held = o;
+            candidate = candidate || o;
+          });
+          if (held) return { y: surface, body: held, tip: 0 };
+          tip = center < left(candidate) + candidate.w / 2 ? -1 : 1;
+          return { y: floor, body: null, tip: tip };
         }
 
         function step(t) {
@@ -171,6 +194,7 @@
                 return;
               }
               var prevBottom = top(b) + b.h;
+              b.on = null;
               b.vy += GRAVITY * dt;
               b.x += b.vx * dt;
               b.y += b.vy * dt;
@@ -183,10 +207,21 @@
                 b.vy = -b.vy * 0.6;
               }
               var s = support(b, prevBottom);
+              if (s.tip) b.vx += s.tip * TIP * dt;
               if (top(b) + b.h >= s.y) {
                 b.y = s.y - b.h - b.baseTop;
                 b.vy = b.vy > 0.25 ? -b.vy * 0.35 : 0;
+                b.knocked = false;
                 if (s.body) {
+                  var other = occupant(s.body, b);
+                  if (other) {
+                    other.on = null;
+                    other.knocked = true;
+                    other.vx = (left(other) + other.w / 2 < left(b) + b.w / 2 ? -1 : 1) * 0.35;
+                    other.vy = -0.3;
+                    other.el.style.zIndex = ++z;
+                  }
+                  b.on = s.body;
                   if (b.vx) {
                     var before = b.vx;
                     b.vx += (Math.sin(b.tilt) * SLOPE - Math.sign(b.vx) * FRICTION) * dt;
@@ -214,12 +249,22 @@
           frame = null;
           bodies.forEach(function (b) {
             b.x = b.y = b.vx = b.vy = 0;
+            b.on = null;
+            b.knocked = false;
             b.el.style.translate = "";
+            b.el.style.removeProperty("--tilt");
           });
-          if (desktop.matches) {
-            measure();
-            wake();
-          }
+          if (!desktop.matches) return;
+          bodies.forEach(function (b) {
+            var tilt = parseFloat(getComputedStyle(b.el).getPropertyValue("--tilt")) || 0;
+            b.el.style.setProperty("--tilt", (tilt + (Math.random() * 2 - 1) * 1.5).toFixed(2) + "deg");
+          });
+          measure();
+          bodies.forEach(function (b) {
+            b.x = (Math.random() * 2 - 1) * 14;
+            render(b);
+          });
+          wake();
         }
 
         bodies.forEach(function (b) {
@@ -248,6 +293,8 @@
             if (!moved) {
               moved = true;
               b.dragging = true;
+              b.on = null;
+              b.knocked = false;
               b.vx = b.vy = 0;
               card.setPointerCapture(e.pointerId);
               card.classList.add("dragging");
@@ -277,6 +324,7 @@
 
           card.addEventListener("pointerup", release);
           card.addEventListener("pointercancel", release);
+          card.addEventListener("lostpointercapture", release);
           card.addEventListener("click", function (e) {
             if (moved) {
               e.preventDefault();

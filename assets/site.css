@@ -131,30 +131,31 @@ footer {
   box-shadow:
     0 5px 8px rgba(47, 47, 47, 0.14),
     inset 0 -1px 0 rgba(112, 96, 35, 0.08);
-  transform: rotate(-0.5deg);
+  --tilt: -0.5deg;
+  transform: rotate(var(--tilt));
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .right-column > p:nth-child(even) {
   background: #fff;
-  transform: rotate(0.65deg);
+  --tilt: 0.65deg;
 }
 
 .right-column > p:nth-child(3n) {
   background: #fff;
-  transform: rotate(-0.2deg);
+  --tilt: -0.2deg;
 }
 
 .right-column > p:nth-child(1) {
-  transform: rotate(-2deg);
+  --tilt: -2deg;
 }
 
 .right-column > p:nth-child(2) {
-  transform: rotate(2.4deg);
+  --tilt: 2.4deg;
 }
 
 .right-column > p:nth-child(3) {
-  transform: rotate(-1.6deg);
+  --tilt: -1.6deg;
 }
 
 .right-column > p:hover {
@@ -449,17 +450,20 @@ footer {
   }
 }
 
-.draggable {
-  cursor: grab;
-  touch-action: auto;
-  -webkit-user-select: none;
-  user-select: none;
-}
+@media (min-width: 1100px) {
+  .draggable {
+    cursor: grab;
+    -webkit-user-select: none;
+    user-select: none;
+  }
 
-.draggable.dragging {
-  cursor: grabbing;
-  user-select: none;
-  transition: none;
+  .draggable.dragging {
+    cursor: grabbing;
+  }
+
+  .right-column > p.draggable:hover {
+    transform: rotate(var(--tilt));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
