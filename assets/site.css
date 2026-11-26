@@ -334,7 +334,7 @@ footer {
     gap: 40px;
     flex: 1;
     overflow: hidden;
-    padding-bottom: 16px;
+    padding-bottom: 10px;
   }
   
   .left-column {
@@ -386,34 +386,31 @@ footer {
 @media (min-width: 1100px) {
   .right-column {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .right-column {
-    gap: 14px;
+    gap: clamp(14px, 2vh, 22px);
   }
 
   .right-column > p {
-    padding: 16px 18px 18px;
-    font-size: 0.84em;
-    line-height: 1.5;
+    padding: clamp(16px, 2.6vh, 26px) 20px;
+    font-size: clamp(12.5px, min(calc(1.05vh + 6.6px), calc(1.4vw - 3px)), 17px);
+    line-height: 1.55;
   }
 
   .note-image,
   .logo-pair {
-    height: 90px;
+    height: clamp(76px, 12vh, 130px);
     margin: -6px 0 12px;
   }
 
   .logo-pair {
-    gap: 40px;
+    gap: 44px;
   }
 
   .logo-pair img {
-    height: 68px;
+    height: 70%;
   }
 
   .left-column {
-    flex-basis: 180px;
+    flex-basis: clamp(180px, 24vh, 240px);
   }
 
   .site-nav {
@@ -422,6 +419,7 @@ footer {
 
   body {
     padding-top: 12px;
+    padding-bottom: 6px;
   }
 
   footer {
@@ -436,36 +434,6 @@ footer {
     margin-bottom: 0;
     font-size: 0.8em;
     line-height: 1.45;
-  }
-}
-
-@media (min-width: 1100px) and (min-height: 880px) {
-  .right-column {
-    gap: 20px;
-  }
-
-  .right-column > p {
-    padding: 24px 22px 28px;
-    font-size: 0.92em;
-    line-height: 1.6;
-  }
-
-  .note-image,
-  .logo-pair {
-    height: 110px;
-    margin: -10px 0 18px;
-  }
-
-  .logo-pair {
-    gap: 48px;
-  }
-
-  .logo-pair img {
-    height: 84px;
-  }
-
-  .left-column {
-    flex-basis: 220px;
   }
 }
 
