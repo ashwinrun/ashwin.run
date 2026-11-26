@@ -73,7 +73,7 @@
                 <img src="./assets/corridor-mark.svg" alt="Corridor">
                 <img src="./assets/cognition-mark.svg" alt="Cognition">
               </span>
-              I am currently in the midst of a stint in the AI industry as Member of Technical Staff at <a href="https://cognition.com/">Cognition</a>, which acquired my startup <a href="https://corridor.dev">Corridor</a>. We focus on securing the world's code by building Devin Security.
+              I am currently in the midst of a stint as Member of Technical Staff at <a href="https://cognition.com/">Cognition</a>, which acquired my startup <a href="https://corridor.dev">Corridor</a>. We focus on securing the world's code by building Devin Security.
         </p>
 
         <p class="note-with-image">
@@ -94,7 +94,7 @@
               Before my undergraduate studies, I spent much time helping my high school build one of the <a href="https://www.naqt.com/stats/player/?contact_id=329">top quizbowl teams</a> in the country. I also attended Georgia Tech for a year through Georgia's excellent <a href="https://gadoe.org/ctae/dual-enrollment-articulation/">Dual Enrollment program</a>.
 <br>
               <br>
-              You can reach me at <a href="mailto:ashwin@corridor.dev">ashwin@corridor.dev</a> or <a href="mailto:aramaswamis@gmail.com">aramaswamis@gmail.com</a>.
+              You can reach me at <a href="mailto:aramaswamis@gmail.com">aramaswamis@gmail.com</a>.
             </p>
 
       </div>
@@ -115,7 +115,7 @@
         var FRICTION = 0.0006;
         var TIP = 0.0008;
         var z = 10;
-        var frame = null, lastT = 0, floorY = 0, ceilingY = 0;
+        var frame = null, lastT = 0, floorY = 0, ceilingY = 0, touched = false;
         var nav = document.querySelector(".site-nav");
         var bodies = Array.prototype.map.call(
           document.querySelectorAll(".right-column > p"),
@@ -182,6 +182,33 @@
           return { y: floor, body: null, tip: tip };
         }
 
+        function centerX(b) { return left(b) + b.w / 2; }
+
+        function bump(b, impact) {
+          bodies.forEach(function (o) {
+            if (!touched || o === b || o.dragging || o.vy) return;
+            var dist = Math.abs(centerX(o) - centerX(b));
+            if (dist > 450) return;
+            var f = (1 - dist / 450) * Math.min(impact, 1.5);
+            o.vy = Math.min(o.vy, -0.15 * f);
+            o.vx += (centerX(o) < centerX(b) ? -1 : 1) * 0.05 * f;
+          });
+        }
+
+        function sweep(d, dt) {
+          if (performance.now() - d.lastMove > 80) return;
+          bodies.forEach(function (o) {
+            if (o === d || o.dragging) return;
+            var overlapX = Math.min(left(d) + d.w, left(o) + o.w) - Math.max(left(d), left(o));
+            var overlapY = Math.min(top(d) + d.h, top(o) + o.h) - Math.max(top(d), top(o));
+            if (overlapX <= 0 || overlapY <= 0) return;
+            var away = centerX(o) < centerX(d) ? -1 : 1;
+            if (Math.sign(d.vx) !== away || Math.abs(d.vx) < 0.2) return;
+            var push = d.vx * 0.35;
+            if (Math.abs(o.vx) < Math.abs(push)) o.vx += (push - o.vx) * Math.min(dt * 0.01, 1);
+          });
+        }
+
         function step(t) {
           var dt = Math.min(t - lastT, 32);
           lastT = t;
@@ -193,6 +220,7 @@
             .forEach(function (b) {
               if (b.dragging) {
                 moving = true;
+                sweep(b, dt);
                 return;
               }
               var prevBottom = top(b) + b.h;
@@ -211,6 +239,7 @@
               var s = support(b, prevBottom);
               if (s.tip) b.vx += s.tip * TIP * dt;
               if (top(b) + b.h >= s.y) {
+                if (b.vy > 0.4) bump(b, b.vy);
                 b.y = s.y - b.h - b.baseTop;
                 b.vy = b.vy > 0.25 ? -b.vy * 0.35 : 0;
                 b.knocked = false;
@@ -237,6 +266,7 @@
               if (b.vx || b.vy) moving = true;
               render(b);
             });
+          moving = moving || bodies.some(function (b) { return b.vx || b.vy; });
           frame = moving ? requestAnimationFrame(step) : null;
         }
 
@@ -298,6 +328,7 @@
             if (!moved && Math.abs(dx) + Math.abs(dy) < 4) return;
             if (!moved) {
               moved = true;
+              touched = true;
               b.dragging = true;
               b.on = null;
               b.knocked = false;
@@ -312,7 +343,7 @@
             b.vy = b.vy * 0.6 + ((e.clientY - lastY) / dt) * 0.4;
             lastX = e.clientX;
             lastY = e.clientY;
-            lastMove = now;
+            lastMove = b.lastMove = now;
             b.x = originX + dx;
             b.y = originY + dy;
             render(b);
