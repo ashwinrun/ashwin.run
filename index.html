@@ -358,6 +358,16 @@
         }
       }
     </style>
+    <link rel="stylesheet" href="./assets/themes/base.css" />
+    <link rel="stylesheet" href="./assets/themes/editorial.css" />
+    <link rel="stylesheet" href="./assets/themes/terminal.css" />
+    <link rel="stylesheet" href="./assets/themes/swiss.css" />
+    <script>
+      (function () {
+        var t = new URLSearchParams(location.search).get("style") || localStorage.getItem("style");
+        if (t && t !== "current") document.documentElement.setAttribute("data-theme", t);
+      })();
+    </script>
     <base target="_parent" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
@@ -593,6 +603,32 @@
       </div>
     </div>
 
+    <div class="theme-switcher" id="theme-switcher"></div>
+    <script>
+      (function () {
+        var themes = ["current", "editorial", "terminal", "swiss"];
+        var root = document.documentElement;
+        var box = document.getElementById("theme-switcher");
+        themes.forEach(function (t) {
+          var b = document.createElement("button");
+          b.textContent = t;
+          b.onclick = function () {
+            if (t === "current") root.removeAttribute("data-theme");
+            else root.setAttribute("data-theme", t);
+            localStorage.setItem("style", t);
+            render();
+          };
+          box.appendChild(b);
+        });
+        function render() {
+          var cur = root.getAttribute("data-theme") || "current";
+          Array.prototype.forEach.call(box.children, function (b) {
+            b.setAttribute("aria-pressed", b.textContent === cur);
+          });
+        }
+        render();
+      })();
+    </script>
     <footer></footer>
   </body>
 </html>
