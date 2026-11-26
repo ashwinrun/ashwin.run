@@ -18,346 +18,7 @@
       href="./assets/lightning.svg"
       type="image/x-icon"
     />
-    <style>
-      body {
-        font-family: Georgia, serif;
-        background-color: #f5f5dc;
-        color: #2f2f2f;
-        margin: 0;
-        padding: 20px;
-        line-height: 1.6;
-        /* height: 100vh; */
-        /* overflow: hidden; */
-      }
-
-      h1 {
-        font-size: 2em;
-        margin-bottom: 0;
-        font-weight: bold;
-        color: #2f2f2f;
-      }
-
-      .subtitle {
-        font-size: 1em;
-        margin-top: 0;
-        color: #2f2f2f;
-      }
-
-      p {
-        font-size: 1em;
-        margin-bottom: 1em;
-      }
-
-      a {
-        color: #d2691e;
-        text-decoration: none;
-      }
-
-      a:hover {
-        text-decoration: underline;
-      }
-
-      main {
-        max-width: 600px;
-      }
-
-      header {
-        background: none;
-        color: #2f2f2f;
-        text-align: left;
-        padding: 0;
-      }
-
-      footer {
-        background: none;
-        color: #2f2f2f;
-        text-align: left;
-        padding: 0;
-        margin-top: 2em;
-      }
-      
-      .left-column {
-        position: relative;
-        width: fit-content;
-        margin: 0 auto;
-      }
-
-      .left-column::before {
-        content: "";
-        position: absolute;
-        top: 24px;
-        left: 50%;
-        z-index: 2;
-        width: 62px;
-        height: 17px;
-        background: rgba(232, 222, 198, 0.86);
-        box-shadow: 0 1px 2px rgba(47, 47, 47, 0.12);
-        transform: translateX(-50%) rotate(-1deg);
-      }
-
-      .headshot {
-        box-sizing: border-box;
-        width: 200px;
-        aspect-ratio: 4 / 5;
-        padding: 8px;
-        border-radius: 2px;
-        background: white;
-        box-shadow: 0 5px 12px rgba(47, 47, 47, 0.18);
-        object-fit: cover;
-        object-position: center 35%;
-        margin: auto;
-        display: block;
-        margin-top: 2em;
-        margin-bottom: 0;
-        transform: rotate(-0.75deg);
-      }
-
-      .profile-name {
-        margin: 0.85rem 0 0.75rem;
-        font-size: 2em;
-        letter-spacing: -0.02em;
-        line-height: 1.2;
-        text-align: center;
-      }
-
-      .profile-quote {
-        width: 100%;
-        margin: 0 0 2rem;
-        padding: 0.75rem 0;
-        border-top: 1px solid rgba(47, 47, 47, 0.22);
-        border-bottom: 1px solid rgba(47, 47, 47, 0.22);
-        font-size: 0.9em;
-        font-style: italic;
-        text-align: center;
-      }
-
-      .container {
-        display: flex;
-        flex-direction: column;
-        /* height: 100vh; */
-      }
-
-      .right-column {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .right-column > p {
-        position: relative;
-        margin: 0;
-        padding: 24px 22px 28px;
-        background: #fff;
-        border: 1px solid rgba(112, 96, 35, 0.18);
-        box-shadow:
-          0 5px 8px rgba(47, 47, 47, 0.14),
-          inset 0 -1px 0 rgba(112, 96, 35, 0.08);
-        transform: rotate(-0.5deg);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .right-column > p:nth-child(even) {
-        background: #fff;
-        transform: rotate(0.65deg);
-      }
-
-      .right-column > p:nth-child(3n) {
-        background: #fff;
-        transform: rotate(-0.2deg);
-      }
-
-      .right-column > p:hover {
-        z-index: 1;
-        box-shadow:
-          0 9px 16px rgba(47, 47, 47, 0.18),
-          inset 0 -1px 0 rgba(112, 96, 35, 0.08);
-        transform: translateY(-3px) rotate(0);
-      }
-
-      .note-with-image::before {
-        content: "";
-        position: absolute;
-        top: 7px;
-        left: 50%;
-        z-index: 2;
-        width: 58px;
-        height: 16px;
-        background: rgba(232, 222, 198, 0.82);
-        box-shadow: 0 1px 2px rgba(47, 47, 47, 0.12);
-        transform: translateX(-50%) rotate(-1deg);
-      }
-
-      .note-image {
-        display: block;
-        width: 100%;
-        height: 145px;
-        margin: -10px 0 18px;
-        border: 5px solid white;
-        box-shadow: 0 2px 6px rgba(47, 47, 47, 0.16);
-        object-fit: cover;
-      }
-
-      .note-image.contain {
-        background: white;
-        object-fit: contain;
-      }
-
-      .logo-pair {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 64px;
-        height: 145px;
-        margin: -10px 0 18px;
-        border: 5px solid white;
-        background: #fafaf7;
-        box-shadow: 0 2px 6px rgba(47, 47, 47, 0.16);
-      }
-
-      .logo-pair a {
-        display: flex;
-      }
-
-      .logo-pair img {
-        height: 96px;
-        width: auto;
-        transition: transform 0.2s ease;
-      }
-
-      .logo-pair a:hover img {
-        transform: translateY(-2px);
-      }
-
-      .writing-section {
-        margin-top: 40px;
-        padding: 0 20px;
-      }
-      
-      .writing-section h2 {
-        font-size: 1.5em;
-        margin-bottom: 20px;
-        color: #2f2f2f;
-        text-align: center;
-      }
-      
-      .writing-cards {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 20px;
-        max-width: 400px;
-        margin: 0 auto;
-      }
-      
-      .card {
-        background: white;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        overflow: hidden;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        text-decoration: none;
-        color: inherit;
-        display: block;
-      }
-      
-      .card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        text-decoration: none;
-      }
-      
-      .card-image {
-        width: 100%;
-        height: 160px;
-        object-fit: cover;
-        display: block;
-      }
-      
-      .card-content {
-        padding: 15px;
-      }
-      
-      .card h3 {
-        margin: 0 0 8px 0;
-        font-size: 1em;
-        line-height: 1.3;
-        color: #2f2f2f;
-      }
-      
-      .card:hover h3 {
-        color: #d2691e;
-      }
-      
-      .card .year {
-        margin: 0;
-        font-size: 0.85em;
-        color: #666;
-        font-style: italic;
-      }
-
-      @media (min-width: 900px) {
-        .container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 20px;
-          padding-top: 0;
-        }
-        
-        .content-wrapper {
-          display: flex;
-          gap: 40px;
-          flex: 1;
-          overflow: hidden;
-        }
-        
-        .left-column {
-          flex: 0 0 220px;
-          display: flex;
-          flex-direction: column;
-          width: auto;
-          margin: 0;
-        }
-
-        .left-column::before {
-          top: -8px;
-        }
-        
-        .right-column {
-          flex: 1;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          align-items: start;
-        }
-        
-        .headshot {
-          width: 100%;
-          aspect-ratio: 4 / 5;
-          margin: 0;
-          border-radius: 2px;
-        }
-        
-        .writing-section h2 {
-          font-size: 1.5em;
-          margin-bottom: 20px;
-          color: #2f2f2f;
-          padding-top: 0;
-        }
-        
-        .writing-cards {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 20px;
-          max-width: 1200px;
-          margin: 0 auto;
-        }
-      
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .right-column > p {
-          transition: none;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="./assets/site.css" />
     <base target="_parent" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
@@ -375,6 +36,11 @@
     </script>
   </head>
   <body>
+    <nav class="site-nav">
+      <a href="/" aria-current="page">Home</a>
+      <a href="/writing/">Writing</a>
+      <a href="/recommendations/">Recommendations</a>
+    </nav>
     <div class="container">
       <div class="content-wrapper">
       <div class="left-column">
@@ -404,10 +70,10 @@
 
         <p class="note-with-image">
               <span class="logo-pair">
-                <a href="https://corridor.dev"><img src="./assets/corridor-mark.svg" alt="Corridor"></a>
-                <a href="https://cognition.com/"><img src="./assets/cognition-mark.svg" alt="Cognition"></a>
+                <img src="./assets/corridor-mark.svg" alt="Corridor">
+                <img src="./assets/cognition-mark.svg" alt="Cognition">
               </span>
-              I am currently in the midst of a stint in the AI industry as Member of Technical Staff at <a href="https://cognition.com/">Cognition</a>, which acquired my startup <a href="https://corridor.dev">Corridor</a>. We focus on securing the world's code.
+              I am currently in the midst of a stint as Member of Technical Staff at <a href="https://cognition.com/">Cognition</a>, which acquired my startup <a href="https://corridor.dev">Corridor</a>. We focus on securing the world's code by building Devin Security.
         </p>
 
         <p class="note-with-image">
@@ -421,14 +87,14 @@
             <p>
               I hold a B.S. in computer science from Stanford University. At Stanford, I was the first CTO of the <a href="https://stanforddaily.com/">Stanford Daily</a>; organized <a href="https://www.treehacks.com/">TreeHacks</a>; and worked on <a href="https://github.com/codalab/codalab-worksheets">CodaLab</a>, <a href="https://aworldmadebytravel.org/">The Grand Tour Project</a>, <a href="https://purl.stanford.edu/tr171zs0069">Stanford Internet Observatory</a>, <a href="https://immigrationlab.org/">Immigration Policy Lab</a>, and <a href="https://crfm.stanford.edu/">CRFM</a>. I built software at early stage startups including <a href="https://skiff.com/">Skiff</a>, <a href="https://www.nooks.in/">Nooks</a>, <a href="https://www.pulsarml.com/">Pulsar</a>, <a href="https://eventive.org/">Eventive</a>, <a href="https://maple.finance/">Maple Finance</a>, and <a href="https://caldera.xyz/">Caldera</a>. Later, I worked at <a href="https://www.sequoiacap.com/">Sequoia Capital</a> as a tech law and policy fellow in Washington, D.C.
             </p>
-            <p class="">
+            <p>
               I also hold a J.D. from Georgetown University Law Center, where I helped start the <a href="https://www.law.georgetown.edu/tech-institute/initiatives/georgetown-justice-lab/judicial-innovation/">Judicial Innovation Fellowship</a>; helped establish an endowment for <a href="https://campusministry.georgetown.edu/faith-traditions/dharmic/">Dharmic Life</a>; and worked at the <a href="https://wikimediafoundation.org/">Wikimedia Foundation</a> and <a href="https://www.law.georgetown.edu/icap/">ICAP</a>. In 2023, I worked in the Georgia Attorney General's <a href="https://consumer.georgia.gov/">Consumer Protection Division</a> through an <a href="https://www.americanbar.org/groups/antitrust_law/about/awards-fellowships/steiger-fellowship/">ABA Steiger Fellowship</a>, where I worked on the multistate litigation against Meta over child safety (which led to a <a href="https://law.georgia.gov/press-releases/2026-08-26/carr-announces-largest-big-tech-settlement-history">$17.1 billion settlement</a> in 2026).
             </p>
             <p>
               Before my undergraduate studies, I spent much time helping my high school build one of the <a href="https://www.naqt.com/stats/player/?contact_id=329">top quizbowl teams</a> in the country. I also attended Georgia Tech for a year through Georgia's excellent <a href="https://gadoe.org/ctae/dual-enrollment-articulation/">Dual Enrollment program</a>.
 <br>
               <br>
-              You can reach me at <a href="mailto:ashwin@corridor.dev">ashwin@corridor.dev</a> or <a href="mailto:aramaswamis@gmail.com">aramaswamis@gmail.com</a>.
+              You can reach me at <a href="mailto:aramaswamis@gmail.com">aramaswamis@gmail.com</a>.
             </p>
 
       </div>
@@ -438,161 +104,284 @@
   </div>
 
 
-    <div class="writing-section">
-      <h2 style="text-align: center; margin-bottom: 1em;">Writing</h2>
-      <div class="writing-cards">
-        <a href="https://ashwinramaswami.substack.com/p/how-i-accidentally-hacked-stanfords" class="card">
-          <img src="https://substackcdn.com/image/fetch/$s_!MWwM!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc0e7c93e-0612-4be7-b95e-30ce33b3c464_2304x1298.png" alt="How I Accidentally Hacked Stanford's Admissions System" class="card-image">
-          <div class="card-content">
-            <h3>How I Accidentally Hacked Stanford's Admissions System</h3>
-            <p class="year">(2026)</p>
-          </div>
-        </a>
+    <script>
+      (function () {
+        var desktop = window.matchMedia("(min-width: 1100px)");
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-        <a href="https://ashwinramaswami.substack.com/p/2025-the-worlds-that-took-shape" class="card">
-          <img src="https://substackcdn.com/image/fetch/$s_!v_U4!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fedce9ad1-ee77-4d0c-9d9d-2e5f22366bbb_1964x2048.jpeg" alt="2025: The worlds that took shape" class="card-image">
-          <div class="card-content">
-            <h3>2025: The worlds that took shape</h3>
-            <p class="year">(2025)</p>
-          </div>
-        </a>
+        var GRAVITY = 0.0025;
+        var MARGIN = 6;
+        var SLOPE = GRAVITY * 4;
+        var FRICTION = 0.0006;
+        var TIP = 0.0008;
+        var z = 10;
+        var frame = null, lastT = 0, floorY = 0, ceilingY = 0, touched = false;
+        var nav = document.querySelector(".site-nav");
+        var bodies = Array.prototype.map.call(
+          document.querySelectorAll(".right-column > p"),
+          function (el) {
+            return { el: el, x: 0, y: 0, vx: 0, vy: 0, dragging: false };
+          }
+        );
 
-        <a href="https://ashwinramaswami.substack.com/p/essence-of-advaita-vedanta-philosophy/" class="card">
-          <img src="https://substackcdn.com/image/fetch/$s_!1JTs!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F48719817-508c-4f0b-b94f-526c626f0d81_4608x3072.jpeg" alt="Essence of Advaita Vedanta philosophy" class="card-image">
-          <div class="card-content">
-            <h3>Essence of Advaita Vedanta philosophy</h3>
-            <p class="year">(2025)</p>
-          </div>
-        </a>
+        function render(b) {
+          b.el.style.translate = b.x + "px " + b.y + "px";
+        }
 
-        <a href="https://www.ajc.com/opinion/opinion-my-opponents-refusal-to-debate-hurts-democracy/UBWWBJAWBRD4PFNQYVE25SL7ZA/" class="card">
-          <img src="./assets/ajc.jpg" alt="My opponent's refusal to debate hurts democracy" class="card-image">
-          <div class="card-content">
-            <h3>My opponent's refusal to debate hurts democracy</h3>
-            <p class="year">(2024)</p>
-          </div>
-        </a>
+        function measure() {
+          bodies.forEach(function (b) {
+            var r = b.el.getBoundingClientRect();
+            var m = new DOMMatrix(getComputedStyle(b.el).transform);
+            b.tilt = Math.atan2(m.b, m.a);
+            b.w = b.el.offsetWidth;
+            b.h = b.el.offsetHeight;
+            b.baseLeft = r.left + r.width / 2 - b.w / 2 - b.x;
+            b.baseTop = r.top + window.scrollY + r.height / 2 - b.h / 2 - b.y;
+          });
+          floorY = document.documentElement.clientHeight - MARGIN;
+          ceilingY = nav ? nav.getBoundingClientRect().bottom + window.scrollY - 8 : 0;
+          bodies.forEach(function (b) {
+            floorY = Math.max(floorY, b.baseTop + b.y + b.h);
+          });
+        }
 
-        <!-- <a href="https://knightcolumbia.org/blog/a-safe-harbor-for-ai-evaluation-and-red-teaming" class="card">
-          <img src="./assets/ai-safe-harbor.jpg" alt="A Safe Harbor for AI Evaluation and Red Teaming" class="card-image">
-          <div class="card-content">
-            <h3>A Safe Harbor for AI Evaluation and Red Teaming</h3>
-            <p class="year">(2024)</p>
-          </div>
-        </a> -->
-        
-        <a href="https://arxiv.org/abs/2403.07918" class="card">
-          <img src="./assets/societal-impact-ai.png" alt="On the Societal Impact of Open Foundation Models" class="card-image">
-          <div class="card-content">
-            <h3>On the Societal Impact of Open Foundation Models</h3>
-            <p class="year">(2024)</p>
-          </div>
-        </a>
-        
-        <a href="https://lawreview.law.ucdavis.edu/archives/57/1/fact-and-friction-case-study-fight-against-false-news" class="card">
-          <img src="./assets/fact-and-friction.png" alt="Fact and Friction: A Case Study in the Fight Against False News" class="card-image">
-          <div class="card-content">
-            <h3>Fact and Friction: A Case Study in the Fight Against False News</h3>
-            <p class="year">(2023)</p>
-          </div>
-        </a>
-        
-        <a href="https://joinreboot.org/p/whats-in-an-ecosystem" class="card">
-          <img src="./assets/ecosystem.jpeg" alt="What's in an Ecosystem?" class="card-image">
-          <div class="card-content">
-            <h3>What's in an Ecosystem?</h3>
-            <p class="year">(2023)</p>
-          </div>
-        </a>
-        
-        <a href="https://www.indiaspora.org/blog/100-years-later-embracing-our-legacy-of-dr-bhagat-singh-thind/" class="card">
-          <img src="./assets/thind.jpeg" alt="Dr. Bhagat Singh Thind" class="card-image">
-          <div class="card-content">
-            <h3>100 Years Later, Embracing Our Legacy of Dr. Bhagat Singh Thind</h3>
-            <p class="year">(2023)</p>
-          </div>
-        </a>
-        
-        <a href="https://georgetownlawtechreview.org/ai-transcription-isnt-working-for-students-with-disabilities-heres-how-to-fix-it/GLTR-11-2022/" class="card">
-          <img src="./assets/ai-disabilities.png" alt="AI Transcription" class="card-image">
-          <div class="card-content">
-            <h3>AI Transcription Isn't Working for Students with Disabilities. Here's How to Fix It.</h3>
-            <p class="year">(2022)</p>
-          </div>
-        </a>
-        
-        <a href="https://plaintextgroup.github.io/archive/reports/securing-open-source-software-at-the-source/" class="card">
-          <img src="./assets/plaintext.png" alt="Securing Open Source Software" class="card-image">
-          <div class="card-content">
-            <h3>Securing Open Source Software at the Source</h3>
-            <p class="year">(2022)</p>
-          </div>
-        </a>
-        
-        <a href="https://stanforddaily.com/2021/06/12/ramaswami-when-two-worlds-collide/" class="card">
-          <img src="./assets/stanford-daily.jpeg" alt="When Two Worlds Collide" class="card-image">
-          <div class="card-content">
-            <h3>When Two Worlds Collide</h3>
-            <p class="year">(2021)</p>
-          </div>
-        </a>
+        function left(b) { return b.baseLeft + b.x; }
+        function top(b) { return b.baseTop + b.y; }
 
-      </div>
-    </section>
+        function occupant(o, b) {
+          for (var i = 0; i < bodies.length; i++) {
+            if (bodies[i] !== b && bodies[i].on === o) return bodies[i];
+          }
+          return null;
+        }
 
-    <div class="writing-section">
-      <h2 style="text-align: center; margin-bottom: 1em;">Recommendations</h2>
-      <div class="writing-cards">
-        <a href="https://www.amazon.com/Dune-Frank-Herbert/dp/0441172717" class="card">
-          <img src="./assets/dune.jpg" alt="Dune by Frank Herbert" class="card-image">
-          <div class="card-content">
-            <h3>Dune</h3>
-            <p class="year">Frank Herbert</p>
-          </div>
-        </a>
-        
-        <a href="https://www.youtube.com/watch?v=Oi6ZjkXFlcU" class="card">
-          <img src="./assets/mahler.jpg" alt="Mahler Symphony 2 Resurrection" class="card-image">
-          <div class="card-content">
-            <h3>Mahler Symphony No. 2 "Resurrection"</h3>
-            <p class="year">Conducted by Leonard Bernstein</p>
-          </div>
-        </a>
-        
-        <a href="https://www.amazon.com/Pancatantra-Indias-Wisdom-Oxford-Classics/dp/0199555753" class="card">
-          <img src="./assets/pancatantra.jpg" alt="The Pancatantra by Patrick Olivelle" class="card-image">
-          <div class="card-content">
-            <h3>The Pancatantra</h3>
-            <p class="year">Translated by Patrick Olivelle</p>
-          </div>
-        </a>
+        function canHold(o, b) {
+          return o !== b && !o.on && !b.knocked && top(o) - b.h >= Math.min(ceilingY, b.baseTop);
+        }
 
-        <a href="https://en.wikipedia.org/wiki/Castle_in_the_Sky" class="card">
-          <img src="./assets/castle.jpg" alt="Castle in the Sky" class="card-image">
-          <div class="card-content">
-            <h3>Castle in the Sky</h3>
-            <p class="year">Directed by Hayao Miyazaki</p>
-          </div>
-        </a>
+        function support(b, prevBottom) {
+          var floor = floorY;
+          var center = left(b) + b.w / 2;
+          var surface = floor, held = null, tip;
+          bodies.forEach(function (o) {
+            if (!canHold(o, b)) return;
+            var overlaps = left(b) < left(o) + o.w - 2 && left(b) + b.w > left(o) + 2;
+            if (overlaps && top(o) >= prevBottom - 1) surface = Math.min(surface, top(o));
+          });
+          if (surface === floor) return { y: floor, body: null, tip: 0 };
+          var candidate = null;
+          bodies.forEach(function (o) {
+            if (!canHold(o, b) || Math.abs(top(o) - surface) > 3) return;
+            var overlaps = left(b) < left(o) + o.w - 2 && left(b) + b.w > left(o) + 2;
+            if (!overlaps) return;
+            if (center >= left(o) && center <= left(o) + o.w) held = o;
+            candidate = candidate || o;
+          });
+          if (held) return { y: surface, body: held, tip: 0 };
+          tip = center < left(candidate) + candidate.w / 2 ? -1 : 1;
+          return { y: floor, body: null, tip: tip };
+        }
 
-        <a href="https://www.youtube.com/playlist?list=PLFwcC0dtfDTiQSDIfbF9EJYEqTaA4iZ_6" class="card">
-          <img src="./assets/thiruppugazh.jpg" alt="Thiruppugazh" class="card-image">
-          <div class="card-content">
-            <h3>503 Thiruppugazh Songs</h3>
-            <p class="year">Sung by "Guruji" Raghavan</p>
-          </div>
-        </a>
+        function centerX(b) { return left(b) + b.w / 2; }
 
-        <a href="https://www.goodreads.com/book/show/6979007-zhuangzi" class="card">
-          <img src="./assets/zhuangzi.jpg" alt="Zhuangzi" class="card-image">
-          <div class="card-content">
-            <h3>Zhuangzi: The Essential Writings</h3>
-            <p class="year">Translated by Brook Ziporyn</p>
-          </div>
-        </a>
-      </div>
-    </div>
+        function bump(b, impact) {
+          bodies.forEach(function (o) {
+            if (!touched || o === b || o.dragging || o.vy) return;
+            var dist = Math.abs(centerX(o) - centerX(b));
+            if (dist > 450) return;
+            var f = (1 - dist / 450) * Math.min(impact, 1.5);
+            o.vy = Math.min(o.vy, -0.15 * f);
+            o.vx += (centerX(o) < centerX(b) ? -1 : 1) * 0.05 * f;
+          });
+        }
 
+        function sweep(d, dt) {
+          if (performance.now() - d.lastMove > 80) return;
+          bodies.forEach(function (o) {
+            if (o === d || o.dragging) return;
+            var overlapX = Math.min(left(d) + d.w, left(o) + o.w) - Math.max(left(d), left(o));
+            var overlapY = Math.min(top(d) + d.h, top(o) + o.h) - Math.max(top(d), top(o));
+            if (overlapX <= 0 || overlapY <= 0) return;
+            var away = centerX(o) < centerX(d) ? -1 : 1;
+            if (Math.sign(d.vx) !== away || Math.abs(d.vx) < 0.2) return;
+            var push = d.vx * 0.35;
+            if (Math.abs(o.vx) < Math.abs(push)) o.vx += (push - o.vx) * Math.min(dt * 0.01, 1);
+          });
+        }
+
+        function step(t) {
+          var dt = Math.min(t - lastT, 32);
+          lastT = t;
+          var moving = false;
+          var maxX = document.documentElement.clientWidth;
+          bodies
+            .slice()
+            .sort(function (a, b) { return top(b) + b.h - (top(a) + a.h); })
+            .forEach(function (b) {
+              if (b.dragging) {
+                moving = true;
+                sweep(b, dt);
+                return;
+              }
+              var prevBottom = top(b) + b.h;
+              b.on = null;
+              b.vy += GRAVITY * dt;
+              b.x += b.vx * dt;
+              b.y += b.vy * dt;
+              if (left(b) < MARGIN || left(b) + b.w > maxX - MARGIN) {
+                b.x = (left(b) < MARGIN ? MARGIN : maxX - MARGIN - b.w) - b.baseLeft;
+                b.vx = -b.vx * 0.6;
+              }
+              if (top(b) < ceilingY) {
+                b.y = ceilingY - b.baseTop;
+                b.vy = -b.vy * 0.6;
+              }
+              var s = support(b, prevBottom);
+              if (s.tip) b.vx += s.tip * TIP * dt;
+              if (top(b) + b.h >= s.y) {
+                if (b.vy > 0.4) bump(b, b.vy);
+                b.y = s.y - b.h - b.baseTop;
+                b.vy = b.vy > 0.25 ? -b.vy * 0.35 : 0;
+                b.knocked = false;
+                if (s.body) {
+                  var other = occupant(s.body, b);
+                  if (other) {
+                    other.on = null;
+                    other.knocked = true;
+                    other.vx = (left(other) + other.w / 2 < left(b) + b.w / 2 ? -1 : 1) * 0.35;
+                    other.vy = -0.3;
+                    other.el.style.zIndex = ++z;
+                  }
+                  b.on = s.body;
+                  if (b.vx) {
+                    var before = b.vx;
+                    b.vx += (Math.sin(b.tilt) * SLOPE - Math.sign(b.vx) * FRICTION) * dt;
+                    if (Math.sign(b.vx) !== Math.sign(before)) b.vx = 0;
+                  }
+                } else {
+                  b.vx *= Math.pow(0.9, dt / 16);
+                }
+              }
+              if (Math.abs(b.vx) < 0.01) b.vx = 0;
+              if (b.vx || b.vy) moving = true;
+              render(b);
+            });
+          moving = moving || bodies.some(function (b) { return b.vx || b.vy; });
+          frame = moving ? requestAnimationFrame(step) : null;
+        }
+
+        function wake() {
+          if (frame || !desktop.matches) return;
+          lastT = performance.now();
+          frame = requestAnimationFrame(step);
+        }
+
+        function reset() {
+          if (frame) cancelAnimationFrame(frame);
+          frame = null;
+          bodies.forEach(function (b) {
+            b.x = b.y = b.vx = b.vy = 0;
+            b.on = null;
+            b.knocked = false;
+            b.el.style.translate = "";
+            b.el.style.removeProperty("--tilt");
+          });
+          if (!desktop.matches) return;
+          bodies.forEach(function (b) {
+            var tilt = parseFloat(getComputedStyle(b.el).getPropertyValue("--tilt")) || 0;
+            b.el.style.setProperty("--tilt", (tilt + (Math.random() * 2 - 1) * 1.5).toFixed(2) + "deg");
+          });
+          measure();
+          bodies.forEach(function (b) {
+            b.x = (Math.random() * 2 - 1) * 14;
+            render(b);
+          });
+          wake();
+        }
+
+        bodies.forEach(function (b) {
+          var card = b.el;
+          var startX, startY, originX, originY, lastX, lastY, lastMove;
+          var pressed = false, moved = false;
+
+          card.classList.add("draggable");
+          card.addEventListener("dragstart", function (e) { e.preventDefault(); });
+
+          card.addEventListener("pointerdown", function (e) {
+            if (e.pointerType !== "mouse" || e.button !== 0 || !desktop.matches) return;
+            pressed = true;
+            moved = false;
+            startX = lastX = e.clientX;
+            startY = lastY = e.clientY;
+            lastMove = performance.now();
+            originX = b.x;
+            originY = b.y;
+          });
+
+          card.addEventListener("pointermove", function (e) {
+            if (!pressed) return;
+            if (!(e.buttons & 1)) {
+              pressed = false;
+              return;
+            }
+            var dx = e.clientX - startX, dy = e.clientY - startY;
+            if (!moved && Math.abs(dx) + Math.abs(dy) < 4) return;
+            if (!moved) {
+              moved = true;
+              touched = true;
+              b.dragging = true;
+              b.on = null;
+              b.knocked = false;
+              b.vx = b.vy = 0;
+              card.setPointerCapture(e.pointerId);
+              card.classList.add("dragging");
+              card.style.zIndex = ++z;
+              wake();
+            }
+            var now = performance.now(), dt = Math.max(now - lastMove, 1);
+            b.vx = b.vx * 0.6 + ((e.clientX - lastX) / dt) * 0.4;
+            b.vy = b.vy * 0.6 + ((e.clientY - lastY) / dt) * 0.4;
+            lastX = e.clientX;
+            lastY = e.clientY;
+            lastMove = b.lastMove = now;
+            b.x = originX + dx;
+            b.y = originY + dy;
+            render(b);
+          });
+
+          function release() {
+            if (!pressed) return;
+            pressed = false;
+            if (!moved) return;
+            b.dragging = false;
+            card.classList.remove("dragging");
+            if (performance.now() - lastMove > 80) b.vx = b.vy = 0;
+            wake();
+          }
+
+          card.addEventListener("pointerup", release);
+          card.addEventListener("pointercancel", release);
+          card.addEventListener("lostpointercapture", release);
+          card.addEventListener("click", function (e) {
+            if (moved) {
+              e.preventDefault();
+              e.stopPropagation();
+              moved = false;
+            }
+          }, true);
+        });
+
+        var resizeTimer;
+        window.addEventListener("resize", function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(reset, 150);
+        });
+
+        function start() { setTimeout(reset, 400); }
+        if (document.readyState === "complete") start();
+        else window.addEventListener("load", start);
+      })();
+    </script>
     <footer></footer>
   </body>
 </html>
